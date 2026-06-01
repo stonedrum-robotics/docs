@@ -1,0 +1,34 @@
+site_name: Stonedrum Robotics Docs
+site_description: Documentation for dexterous robotic hands, SDKs, demos, and integration.
+repo_url: https://github.com/stonedrum-robotics/docs
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - First Steps: getting-started/first-steps.md
+      - Hardware Setup: getting-started/hardware-setup.md
+  - API Reference:
+      - Hand: api-reference/hand.md
+      - Finger: api-reference/finger.md
+      - Grasp Library: api-reference/grasp-library.md
+  - Tutorials:
+      - Basic Control: tutorials/basic-control.md
+      - Grasp Planning: tutorials/grasp-planning.md
+      - ROS 2 Integration: tutorials/ros2-integration.md
+  - Applications:
+      - Research: applications/research.md
+      - Education: applications/education.md
+      - Industry: applications/industry.md
+  - FAQ: faq.md
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
