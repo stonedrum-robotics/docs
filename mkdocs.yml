@@ -70,7 +70,9 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: [../dexterous-hand-sdk]
+          paths:
+            - dexterous-hand-sdk
+            - ../dexterous-hand-sdk
   - mike:
       version_selector: true
 extra:
