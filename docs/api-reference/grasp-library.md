@@ -1,9 +1,3 @@
-# Grasp Library
+# Grasp Library API
 
-The grasp library stores named posture targets such as:
-
-- `open`
-- `pinch`
-- `cylindrical`
-
-Production deployments should calibrate these poses per hand model and payload.
+::: dexterous_hand.grasp_library.GraspLibrary

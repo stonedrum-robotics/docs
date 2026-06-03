@@ -1,34 +1,84 @@
-site_name: Stonedrum Robotics Docs
-site_description: Documentation for dexterous robotic hands, SDKs, demos, and integration.
-repo_url: https://github.com/stonedrum-robotics/docs
+site_name: Dexterous Hand SDK — Stonedrum Robotics
+repo_url: https://github.com/stonedrum-robotics/dexterous-hand-sdk
 theme:
   name: material
+  palette:
+    - scheme: slate   # dark mode default
+      primary: indigo
+      accent: blue
   features:
     - navigation.tabs
     - navigation.sections
+    - toc.integrate
+    - search.suggest
     - content.code.copy
 nav:
   - Home: index.md
   - Getting Started:
+      - Overview: getting-started/overview.md
       - Installation: getting-started/installation.md
-      - First Steps: getting-started/first-steps.md
       - Hardware Setup: getting-started/hardware-setup.md
+      - First Movement: getting-started/first-movement.md
+  - Concepts:
+      - Hand Model: concepts/hand-model.md
+      - Grasp Taxonomy: concepts/grasp-taxonomy.md
+      - Control Modes: concepts/control-modes.md
+      - Safety: concepts/safety.md
   - API Reference:
       - Hand: api-reference/hand.md
       - Finger: api-reference/finger.md
       - Grasp Library: api-reference/grasp-library.md
+      - Teleoperation: api-reference/teleoperation.md
+      - Driver: api-reference/driver.md
+  - ROS2 Integration:
+      - Overview: ros2-integration/overview.md
+      - Nodes: ros2-integration/nodes.md
+      - Topics & Services: ros2-integration/topics-services.md
+      - Launch Files: ros2-integration/launch-files.md
   - Tutorials:
-      - Basic Control: tutorials/basic-control.md
-      - Grasp Planning: tutorials/grasp-planning.md
-      - ROS 2 Integration: tutorials/ros2-integration.md
+      - Basic Control: tutorials/01-basic-control.md
+      - Grasp Sequence: tutorials/02-grasp-sequence.md
+      - Teleoperation: tutorials/03-teleoperation.md
+      - MoveIt2: tutorials/04-ros2-moveit.md
+      - MuJoCo Sim: tutorials/05-sim-mujoco.md
   - Applications:
-      - Research: applications/research.md
-      - Education: applications/education.md
-      - Industry: applications/industry.md
-  - FAQ: faq.md
+      - Research: applications/research-manipulation.md
+      - Teleoperation Rig: applications/teleoperation-setup.md
+      - Imitation Learning: applications/imitation-learning.md
+      - Education Course: applications/education-course.md
+  - Hardware:
+      - Linkerbot L20: hardware/linkerbot-l20.md
+      - Linkerbot L30: hardware/linkerbot-l30.md
+      - EG Glove: hardware/eg-glove.md
+      - UR Integration: hardware/integration-ur.md
+      - Franka Integration: hardware/integration-franka.md
+      - Accessories: hardware/accessories.md
+  - Deployment:
+      - Docker: deployment/docker.md
+      - Realtime: deployment/realtime.md
+  - Support:
+      - FAQ: support/faq.md
+      - Troubleshooting: support/troubleshooting.md
+      - Changelog: support/changelog.md
+      - Contact: support/contact.md
+  - Français:
+      - Démarrage Rapide: fr/demarrage-rapide.md
+      - Installation: fr/installation.md
+      - FAQ: fr/faq.md
 plugins:
   - search
-markdown_extensions:
-  - admonition
-  - pymdownx.highlight
-  - pymdownx.superfences
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [../dexterous-hand-sdk]
+  - mike:
+      version_selector: true
+extra:
+  version:
+    provider: mike
+
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/stonedrum-robotics
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/company/stonedrum-robotics

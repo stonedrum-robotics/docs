@@ -1,5 +1,5 @@
 # Finger API
 
-`Finger` models a named finger with ordered joints and physical limits.
+::: dexterous_hand.finger.Finger
 
-Use `validate_positions()` before sending custom low-level commands.
+::: dexterous_hand.finger.JointState

@@ -1,19 +1,28 @@
 # Installation
 
-## Python SDK
+The SDK can be installed directly via pip. We recommend using a virtual environment.
 
 ```bash
-python -m pip install dexterous-hand
+# Create and activate a virtual environment
+python3 -m venv dexenv
+source dexenv/bin/activate
+
+# Install the SDK
+pip install dexterous-hand
 ```
 
-For development:
+## ROS 2 Setup
+
+If you are using ROS 2, clone the repository into your workspace and build it:
 
 ```bash
-git clone https://github.com/stonedrum-robotics/dexterous-hand-sdk
-cd dexterous-hand-sdk
-python -m pip install -e ".[dev]"
+cd ~/ros2_ws/src
+git clone https://github.com/stonedrum-robotics/dexterous-hand-sdk.git
+cd ~/ros2_ws
+colcon build --packages-select dexterous_hand_ros2
+source install/setup.bash
 ```
 
-## ROS 2
+## Docker Option
 
-The initial target distribution is ROS 2 Humble on Ubuntu 22.04.
+A `docker-compose.yml` file is provided for quick setup. See the [Docker Deployment](../deployment/docker.md) guide.
