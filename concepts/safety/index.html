@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#safety-constraints" class="md-skip">
+        <a href="#safety-guidelines" class="md-skip">
           Skip to content
         </a>
       
@@ -830,6 +830,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -846,6 +864,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#operating-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operating Limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emergency-stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Stop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mock-mode-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mock Mode Evaluation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-certification-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CE Certification Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-software-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical &amp; Software Safety
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2275,15 +2367,27 @@
   
 
 
-<h1 id="safety-constraints">Safety Constraints</h1>
-<p>To protect both operators and hardware, several safety constraints are enforced at the driver level:</p>
-<ul>
-<li><strong>Position Limits</strong>: Hard stops in firmware prevent hyperextension.</li>
-<li><strong>Velocity Limits</strong>: Max joint velocities are clamped.</li>
-<li><strong>Torque/Current Limits</strong>: Overcurrent protection automatically shuts down the motor if an obstacle is hit.</li>
-<li><strong>Emergency Stop</strong>: The hardware includes an E-Stop circuit.</li>
-</ul>
-<p><strong>Note</strong>: CE certification status is currently under verification — please contact Stonedrum Robotics for the latest compliance documentation.</p>
+<h1 id="safety-guidelines">Safety Guidelines</h1>
+<p>When operating the Stonedrum Robotics L20 dexterous hand, adhering to strict safety protocols is mandatory to protect both the operator and the hardware.</p>
+<h2 id="operating-limits">Operating Limits</h2>
+<p>The hardware is designed to operate within specific physical parameters. Exceeding these can result in degraded performance or permanent damage.
+- <strong>Joint Velocity</strong>: Avoid commanding instantaneous large step changes in joint positions. Use smooth trajectories where possible.
+- <strong>Payload</strong>: The hand is rated for a specific maximum payload. Do not attempt to grasp objects exceeding the specified mass limit.
+- <strong>Temperature</strong>: Continuous high-torque operation can elevate actuator temperatures. The system should be allowed to cool if the external casing becomes hot to the touch.</p>
+<h2 id="emergency-stop">Emergency Stop</h2>
+<p>In the event of unexpected behavior, imminent collision, or hardware faults, immediate cessation of movement is required.
+- <strong><code>hand.stop()</code></strong>: The SDK provides an emergency stop method. Calling <code>hand.stop()</code> immediately halts all active joint motions by commanding zero velocity to the actuators.
+- <strong>When to call it</strong>: Use this programmatic stop in error-handling routines, physical kill-switch callbacks, or anytime anomalous behavior is detected during execution.</p>
+<h2 id="mock-mode-evaluation">Mock Mode Evaluation</h2>
+<p>The safest path for initial development and evaluation is the Mock Mode.
+- By instantiating the hand via <code>Hand.mock()</code>, you create a purely software-based representation of the hand.
+- Use Mock Mode to test complex logic, validate grasp sequences, and ensure your code behaves correctly before running it on physical hardware.</p>
+<h2 id="ce-certification-status">CE Certification Status</h2>
+<p>Please note that the CE certification for the Stonedrum Robotics L20 hand is <strong>under verification</strong>. For inquiries regarding compliance or certification updates, please contact info@stonedrum.co.</p>
+<h2 id="physical-software-safety">Physical &amp; Software Safety</h2>
+<p>Safety relies on a combination of physical awareness and robust software design.
+- <strong>Physical Safety</strong>: Keep hands, loose clothing, and cables away from the robotic hand while it is powered. Operate the hand in a designated workspace free from unexpected obstructions.
+- <strong>Software Safety</strong>: Always ensure your application catches exceptions gracefully and issues a <code>hand.stop()</code> on failure. Rely on the SDK's built-in <code>validate_positions()</code> to enforce soft limits, but do not bypass hardware-level safeguards.</p>
 
 
 

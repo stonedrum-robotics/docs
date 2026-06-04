@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#grasp-sequence" class="md-skip">
+        <a href="#tutorial-2-grasp-sequences" class="md-skip">
           Skip to content
         </a>
       
@@ -1366,10 +1366,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#walkthrough" class="md-nav__link">
+  <a href="#annotated-walkthrough" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Walkthrough
+        Annotated Walkthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Annotated Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cutkosky-poses-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cutkosky Poses Explained
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
       
     </span>
   </a>
@@ -2323,33 +2362,52 @@
   
 
 
-<h1 id="grasp-sequence">Grasp Sequence</h1>
-<p>This tutorial covers <code>examples/02_grasp_sequence.py</code>.</p>
-<pre><code class="language-python">from dexterous_hand import Hand
-import time
+<h1 id="tutorial-2-grasp-sequences">Tutorial 2: Grasp Sequences</h1>
+<p>Manipulating a dexterous hand joint-by-joint is tedious. To simplify manipulation tasks, the Stonedrum Robotics SDK includes a Grasp Library that maps named poses to specific joint configurations. In this tutorial, we will walk through <code>examples/02_grasp_sequence.py</code>.</p>
+<h2 id="annotated-walkthrough">Annotated Walkthrough</h2>
+<p>Let's examine the code:</p>
+<pre><code class="language-python">&quot;&quot;&quot;Run a simple grasp sequence.&quot;&quot;&quot;
+
+# The Hand class exposes named grasps through its built-in GraspLibrary.
+from dexterous_hand import Hand
 
 def main() -&gt; None:
+    &quot;&quot;&quot;Move through open, pinch, cylindrical, and open poses.&quot;&quot;&quot;
+    # Use mock mode first; swap in a hardware driver only after safety checks.
     hand = Hand.mock()
+
+    # The sequence starts and ends open so a demo begins from a safe posture.
     for grasp in [&quot;open&quot;, &quot;pinch&quot;, &quot;cylindrical&quot;, &quot;open&quot;]:
+        # Named grasps expand to joint targets inside dexterous_hand/grasp_library.py.
         hand.move_to_grasp(grasp)
+
+        # Printing each step makes the sequence easy to follow in a terminal demo.
         print(f&quot;Applied grasp: {grasp}&quot;)
-        time.sleep(1.0)
 
 if __name__ == &quot;__main__&quot;:
     main()
 </code></pre>
-<h3 id="walkthrough">Walkthrough</h3>
-<ol>
-<li><strong>Sequence</strong>: We define a list of named grasps from the <code>GraspLibrary</code>.</li>
-<li><strong>Execution</strong>: <code>move_to_grasp</code> automatically translates the name into joint targets.</li>
-<li><strong>Safety</strong>: Starting and ending with "open" ensures safe transitions.</li>
-</ol>
-<p><strong>Expected Output:</strong></p>
-<pre><code>Applied grasp: open
+<h3 id="cutkosky-poses-explained">Cutkosky Poses Explained</h3>
+<p>The grasps built into the SDK are heavily inspired by the <strong>Cutkosky Grasp Taxonomy</strong>, a standard classification system in robotics for human hand grasping. 
+- <strong><code>open</code></strong>: All joints are extended. This is the resting, safe pose used to approach an object.
+- <strong><code>pinch</code></strong>: The thumb and index finger form a precision grip, useful for picking up small items like screws or coins.
+- <strong><code>cylindrical</code></strong>: The fingers wrap uniformly to grip curved, tubular objects like a pipe or a bottle.</p>
+<p>By using these named poses, your application logic becomes much easier to read and maintain. The SDK's <code>GraspLibrary</code> handles the complex math of mapping these high-level concepts into exact radian values for every individual joint on the Linkerbot hand.</p>
+<h3 id="expected-output">Expected Output</h3>
+<p>If you run the script, you should see the following output in your terminal:</p>
+<pre><code class="language-text">Applied grasp: open
 Applied grasp: pinch
 Applied grasp: cylindrical
 Applied grasp: open
 </code></pre>
+<p>Because this uses <code>Hand.mock()</code>, the hardware will not move, but the internal state of the driver will update instantly.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li><strong>Add a Delay</strong>: Import the Python <code>time</code> module and add a <code>time.sleep(1.0)</code> between each grasp to simulate the time it takes for the hand to physically move.</li>
+<li><strong>Print Joint Telemetry</strong>: After applying a grasp, call <code>hand.read_joints()</code> and print the position of the <code>index_flex</code> joint to observe how different grasps affect specific fingers.</li>
+<li><strong>Explore the Library</strong>: Look at the source code in <code>dexterous_hand/grasp_library.py</code> (if available) to find other named grasps and add them to the loop.</li>
+</ol>
+<p>For help expanding the grasp library, contact info@stonedrum.co.</p>
 
 
 

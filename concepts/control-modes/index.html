@@ -802,6 +802,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control Modes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -818,6 +836,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#current-mode-position-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Mode: Position Control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-modes-planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Modes [PLANNED]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coordinate-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coordinate Frames
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safety-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety Mechanisms
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2276,13 +2357,29 @@
 
 
 <h1 id="control-modes">Control Modes</h1>
-<p>The SDK and firmware support multiple control paradigms to suit different research needs.</p>
+<p>The Dexterous Hand SDK provides robust control interfaces for operating the hand in both physical and simulated environments.</p>
+<h2 id="current-mode-position-control">Current Mode: Position Control</h2>
+<p>Presently, the primary control mode exposed by the SDK is <strong>Position Control</strong>. In this mode, users specify target joint angles in radians. </p>
+<p>When a position command is issued:
+1. The desired joint positions are validated against hardware limits.
+2. The targets are transmitted to the hand's low-level controllers.
+3. The internal PID controllers drive the actuators to reach the target angles.</p>
+<p>This mode is ideal for pick-and-place tasks, predefined grasp execution, and kinematic planning.</p>
+<h2 id="future-modes-planned">Future Modes <code>[PLANNED]</code></h2>
+<p>To support advanced manipulation and physical interaction research, future releases will introduce the following modes:
+- <strong>Velocity Control <code>[PLANNED]</code></strong>: Direct commanding of joint velocities (rad/s) for smoother continuous motion profiles.
+- <strong>Torque / Effort Control <code>[PLANNED]</code></strong>: Direct commanding of joint torques (Nm) to enable dynamic tasks and underactuated grasping.
+- <strong>Impedance Control <code>[PLANNED]</code></strong>: Allows tuning of virtual stiffness and damping parameters, enabling compliant interaction with fragile objects and unstructured environments.</p>
+<h2 id="coordinate-frames">Coordinate Frames</h2>
+<p>Understanding the operational spaces is critical for control:
+- <strong>Joint Space</strong>: The native configuration space of the hand. Commands are arrays of joint angles (e.g., <code>thumb_flex = 0.5 rad</code>). The SDK currently operates purely in Joint Space.
+- <strong>Task Space <code>[PLANNED]</code></strong>: The Cartesian space (X, Y, Z, Roll, Pitch, Yaw) representing the position and orientation of the fingertips or the manipulated object. Future inverse kinematics (IK) solvers will translate Task Space objectives into Joint Space commands.</p>
+<h2 id="safety-mechanisms">Safety Mechanisms</h2>
+<p>The SDK incorporates multi-layered safety mechanisms tightly integrated into the control pipeline.</p>
 <ul>
-<li><strong>Position Control</strong>: Direct joint angle commands (default).</li>
-<li><strong>Torque Control</strong>: Commanded joint efforts, essential for compliant manipulation and reinforcement learning.</li>
-<li><strong>Impedance Control</strong>: Virtual spring-damper behavior at the joint level.</li>
+<li><strong>Soft Limits</strong>: Every position command is intercepted by <code>validate_positions()</code>. This enforces strict lower and upper angular bounds before any command reaches the hardware, preventing self-collision and hyper-extension.</li>
+<li><strong>Emergency Stop</strong>: For immediate halting of all motion, the <code>hand.stop()</code> method is available. This bypasses normal trajectory execution and immediately arrests actuator movement.</li>
 </ul>
-<p>Check the <code>driver</code> documentation to see how to switch modes.</p>
 
 
 

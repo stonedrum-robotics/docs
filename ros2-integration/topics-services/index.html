@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#topics-services-and-actions" class="md-skip">
+        <a href="#topics-and-services" class="md-skip">
           Skip to content
         </a>
       
@@ -1172,6 +1172,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topics & Services
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1188,6 +1206,103 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topic-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Topic Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handjoint_states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /hand/joint_states
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handjoint_commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /hand/joint_commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teleopglove_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /teleop/glove_state
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#action-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Action Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#execute_grasp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /execute_grasp
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2275,48 +2390,45 @@
   
 
 
-<h1 id="topics-services-and-actions">Topics, Services, and Actions</h1>
-<table>
-<thead>
-<tr>
-<th>Interface</th>
-<th>Type</th>
-<th>Name</th>
-<th>Message/Service Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Topic</td>
-<td>Pub</td>
-<td><code>/hand/joint_states</code></td>
-<td><code>sensor_msgs/msg/JointState</code></td>
-<td>Current hand state</td>
-</tr>
-<tr>
-<td>Topic</td>
-<td>Sub</td>
-<td><code>/hand/joint_commands</code></td>
-<td><code>sensor_msgs/msg/JointState</code></td>
-<td>Desired joint targets</td>
-</tr>
-<tr>
-<td>Action</td>
-<td>Server</td>
-<td><code>/hand/execute_grasp</code></td>
-<td>custom Action</td>
-<td>Executes a named grasp</td>
-</tr>
-<tr>
-<td>Service</td>
-<td>Server</td>
-<td><code>/hand/set_control_mode</code></td>
-<td>custom Srv</td>
-<td>Switches between Position/Torque</td>
-</tr>
-</tbody>
-</table>
+<h1 id="topics-and-services">Topics and Services</h1>
+<p>The Stonedrum Robotics ROS 2 packages expose standard topics, services, and actions to interface with the dexterous hand. These interfaces adhere to standard ROS message types wherever possible, allowing you to use native tools like <code>ros2 topic echo</code> and <code>rqt</code>.</p>
+<h2 id="topic-reference">Topic Reference</h2>
+<h3 id="handjoint_states"><code>/hand/joint_states</code></h3>
+<ul>
+<li><strong>Type:</strong> <code>sensor_msgs/msg/JointState</code></li>
+<li><strong>Publisher:</strong> <code>HandNode</code></li>
+<li><strong>Description:</strong> Publishes the current state of the hand. The message contains the <code>name</code>, <code>position</code> (in radians), <code>velocity</code> (in rad/s), and <code>effort</code> (in Nm) of all active joints in the hand. This topic is published at the frequency defined by the <code>publish_rate</code> parameter (default 50Hz).</li>
+</ul>
+<h3 id="handjoint_commands"><code>/hand/joint_commands</code></h3>
+<ul>
+<li><strong>Type:</strong> <code>sensor_msgs/msg/JointState</code></li>
+<li><strong>Subscriber:</strong> <code>HandNode</code></li>
+<li><strong>Description:</strong> Receives target joint positions. The <code>HandNode</code> parses the <code>name</code> and <code>position</code> arrays and forwards these targets to the underlying hardware. You only need to specify the joints you wish to move; unspecified joints will hold their current position.</li>
+</ul>
+<h3 id="teleopglove_state"><code>/teleop/glove_state</code></h3>
+<ul>
+<li><strong>Type:</strong> <code>std_msgs/msg/String</code> (or a custom TeleoperationFrame message)</li>
+<li><strong>Publisher:</strong> <code>TeleoperationNode</code></li>
+<li><strong>Description:</strong> Publishes the normalized telemetry generated by the teleoperation input device (e.g., a VR glove or a keyboard). This is primarily used for debugging human-in-the-loop inputs before they are converted to raw joint commands.</li>
+</ul>
+<h2 id="action-reference">Action Reference</h2>
+<h3 id="execute_grasp"><code>/execute_grasp</code></h3>
+<ul>
+<li><strong>Type:</strong> <code>dexterous_hand_interfaces/action/ExecuteGrasp</code></li>
+<li><strong>Server:</strong> <code>GraspActionServer</code></li>
+<li><strong>Description:</strong> An action server that accepts a string identifier for a grasp (e.g., "pinch", "cylindrical") and smoothly interpolates the hand's joints to that pose.</li>
+</ul>
+<p><strong>Action Goal:</strong></p>
+<pre><code class="language-text">string grasp_name
+</code></pre>
+<p><strong>Action Feedback:</strong></p>
+<pre><code class="language-text">float32 progress_percentage
+</code></pre>
+<p><strong>Action Result:</strong></p>
+<pre><code class="language-text">bool success
+string message
+</code></pre>
+<p>By adhering to these standard interfaces, the Stonedrum Robotics SDK seamlessly integrates into complex, multi-node robotic systems. If you have questions about specific message definitions, please contact us at info@stonedrum.co.</p>
 
 
 

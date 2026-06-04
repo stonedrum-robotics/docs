@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#teleoperation" class="md-skip">
+        <a href="#tutorial-3-teleoperation" class="md-skip">
           Skip to content
         </a>
       
@@ -1343,6 +1343,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teleoperation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1359,6 +1377,64 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#annotated-walkthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotated Walkthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Annotated Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#teleoperationcontroller-and-read_glove_frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TeleoperationController and read_glove_frame
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyboard-controls-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keyboard Controls Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2275,14 +2351,82 @@
   
 
 
-<h1 id="teleoperation">Teleoperation</h1>
-<p>This tutorial covers <code>examples/03_teleoperation_keyboard.py</code>.</p>
-<p>It demonstrates how to map arbitrary inputs (like a keyboard or data glove) to joint targets in real-time.</p>
-<ol>
-<li>The <code>TeleoperationInterface</code> allows defining mappings from sensors to joints.</li>
-<li>In a loop, inputs are read, scaled, and sent as commands to the hand.</li>
-</ol>
-<p>Please see the example script for the full implementation details.</p>
+<h1 id="tutorial-3-teleoperation">Tutorial 3: Teleoperation</h1>
+<p>Teleoperation involves controlling a robot in real-time using human input. The Stonedrum Robotics SDK provides a robust <code>TeleoperationController</code> to standardize inputs from VR gloves, keyboards, or joysticks. This tutorial walks through <code>examples/03_teleoperation_keyboard.py</code>.</p>
+<h2 id="annotated-walkthrough">Annotated Walkthrough</h2>
+<p>Here is the example code:</p>
+<pre><code class="language-python">&quot;&quot;&quot;Keyboard teleoperation placeholder.&quot;&quot;&quot;
+
+from dexterous_hand import Hand
+from dexterous_hand.teleoperation import TeleoperationController, TeleoperationFrame
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Apply a canned teleoperation frame in mock mode.&quot;&quot;&quot;
+    # Mock mode keeps the example deterministic and hardware-free.
+    hand = Hand.mock()
+
+    # The controller owns the translation from frames to Hand.move_joints calls.
+    controller = TeleoperationController(hand)
+
+    # This canned frame stands in for a keyboard event that curls thumb and index.
+    controller.apply_frame(TeleoperationFrame({&quot;thumb_flex&quot;: 0.5, &quot;index_flex&quot;: 0.5}, &quot;keyboard&quot;))
+
+    # In a real keyboard loop, this print would be replaced by live status feedback.
+    print(&quot;Applied keyboard teleoperation frame&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h3 id="teleoperationcontroller-and-read_glove_frame">TeleoperationController and <code>read_glove_frame</code></h3>
+<p>The <code>TeleoperationController</code> is responsible for receiving normalized <code>TeleoperationFrame</code> objects and applying them safely to the hand driver. A <code>TeleoperationFrame</code> is simply a dictionary of joint targets coupled with a string identifying the source of the data.</p>
+<p>If you inspect the <code>teleoperation.py</code> file, you will notice a method called <code>read_glove_frame()</code> that currently raises a <code>NotImplementedError("Glove device integration is vendor-specific.")</code>. </p>
+<p>Why is this not implemented? VR gloves and motion tracking hardware vary wildly between vendors. A Sensable glove outputs entirely different telemetry formats than an Oculus hand-tracking system. Stonedrum Robotics provides the structured <code>TeleoperationFrame</code> so that you can easily write a vendor-specific parser that maps raw glove sensor values into our standard radian format, ensuring hardware flexibility without rewriting the core SDK logic.</p>
+<h3 id="keyboard-controls-table">Keyboard Controls Table</h3>
+<p>If you were to expand this script to listen to live keyboard events (e.g., using the <code>pynput</code> library or standard terminal curses), a common keymapping structure would look like this:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+<th>Target Joint</th>
+<th>Radian Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>W</code></td>
+<td>Open Index Finger</td>
+<td><code>index_flex</code></td>
+<td><code>0.0</code></td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>Close Index Finger</td>
+<td><code>index_flex</code></td>
+<td><code>1.5</code></td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>Open Middle Finger</td>
+<td><code>middle_flex</code></td>
+<td><code>0.0</code></td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>Close Middle Finger</td>
+<td><code>middle_flex</code></td>
+<td><code>1.5</code></td>
+</tr>
+<tr>
+<td><code>Space</code></td>
+<td>Open Hand</td>
+<td>All</td>
+<td><code>0.0</code></td>
+</tr>
+</tbody>
+</table>
+<p>You would map keyboard events to generate a <code>TeleoperationFrame</code>, and then pass that frame into <code>controller.apply_frame()</code>.</p>
+<p>If you need assistance integrating a specific vendor's VR glove, please reach out to info@stonedrum.co.</p>
 
 
 

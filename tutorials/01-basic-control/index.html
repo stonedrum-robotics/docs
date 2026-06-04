@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#basic-joint-control" class="md-skip">
+        <a href="#tutorial-1-basic-joint-control" class="md-skip">
           Skip to content
         </a>
       
@@ -1338,10 +1338,38 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#walkthrough" class="md-nav__link">
+  <a href="#annotated-walkthrough" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Walkthrough
+        Annotated Walkthrough
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Annotated Walkthrough">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mock-driver-internals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mock Driver Internals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercises
       
     </span>
   </a>
@@ -2323,30 +2351,42 @@
   
 
 
-<h1 id="basic-joint-control">Basic Joint Control</h1>
-<p>This tutorial covers <code>examples/01_basic_joint_control.py</code>.</p>
-<pre><code class="language-python">from dexterous_hand import Hand
+<h1 id="tutorial-1-basic-joint-control">Tutorial 1: Basic Joint Control</h1>
+<p>In this tutorial, we will explore the simplest way to interact with the Stonedrum Robotics dexterous hand using the Python SDK. We will walk through <code>examples/01_basic_joint_control.py</code> to understand how to instantiate the driver, send commands, and read telemetry.</p>
+<h2 id="annotated-walkthrough">Annotated Walkthrough</h2>
+<p>Let's look at the example script, <code>examples/01_basic_joint_control.py</code>:</p>
+<pre><code class="language-python">&quot;&quot;&quot;Basic joint control example.&quot;&quot;&quot;
+
+# Import the high-level API; it hides the concrete driver implementation.
+from dexterous_hand import Hand
 
 def main() -&gt; None:
+    &quot;&quot;&quot;Command a mock hand and print joint states.&quot;&quot;&quot;
+    # Mock mode connects an in-memory driver, so this example is safe in CI.
     hand = Hand.mock()
+
+    # Command two joints in radians; unspecified joints keep their last value.
     hand.move_joints({&quot;thumb_flex&quot;: 0.3, &quot;index_flex&quot;: 0.4})
+
+    # Read back every joint state to confirm the command reached the driver.
     for state in hand.read_joints():
+        # Print compact telemetry that mirrors what a ROS JointState would carry.
         print(f&quot;{state.name}: {state.position_rad:.2f} rad&quot;)
 
 if __name__ == &quot;__main__&quot;:
     main()
 </code></pre>
-<h3 id="walkthrough">Walkthrough</h3>
+<h3 id="mock-driver-internals">Mock Driver Internals</h3>
+<p>The key to this example is the <code>Hand.mock()</code> initialization. When you call this method, the SDK loads an in-memory "dummy" driver instead of attempting to communicate over a serial or network port to real hardware. </p>
+<p>The mock driver perfectly simulates the API surface. When <code>move_joints()</code> is called, it stores the target positions in memory. When <code>read_joints()</code> is subsequently called, it immediately returns those target positions as the current state, assuming instantaneous and perfect execution. This allows you to write tests, validate control logic, and run continuous integration pipelines without requiring a physical Linkerbot hardware connection on your desk.</p>
+<p>To connect to real hardware later, you would simply replace <code>Hand.mock()</code> with <code>Hand(port='/dev/ttyUSB0')</code> (or the equivalent connection string for your setup).</p>
+<h2 id="exercises">Exercises</h2>
 <ol>
-<li><strong>Initialization</strong>: We instantiate a mock hand which creates an in-memory mock driver.</li>
-<li><strong>Commanding</strong>: <code>move_joints</code> takes a dictionary of joint names and target radians.</li>
-<li><strong>Feedback</strong>: <code>read_joints</code> returns <code>JointState</code> objects which we print out.</li>
+<li><strong>Modify Joint Targets</strong>: Change the script to actuate the <code>middle_flex</code> and <code>ring_flex</code> joints to <code>0.5</code> radians. Run the script and verify the output.</li>
+<li><strong>Read Specific Joints</strong>: Instead of iterating over all joints, modify the <code>read_joints()</code> logic to only print the state of the <code>thumb_flex</code> joint.</li>
+<li><strong>Simulate a Sequence</strong>: Put the <code>move_joints</code> and <code>read_joints</code> calls inside a <code>for</code> loop, slowly incrementing the <code>index_flex</code> position from <code>0.0</code> to <code>1.0</code> radians in steps of <code>0.1</code>.</li>
 </ol>
-<p><strong>Expected Output:</strong></p>
-<pre><code>thumb_flex: 0.30 rad
-index_flex: 0.40 rad
-...
-</code></pre>
+<p>If you have questions about the basic control API, contact us at info@stonedrum.co.</p>
 
 
 

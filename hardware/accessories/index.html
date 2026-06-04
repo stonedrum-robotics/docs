@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#accessories" class="md-skip">
+        <a href="#recommended-accessories" class="md-skip">
           Skip to content
         </a>
       
@@ -1797,6 +1797,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accessories
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1813,6 +1831,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-electrical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware &amp; Electrical
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mounting-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mounting &amp; Tooling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-demonstration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing &amp; Demonstration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordering-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering Information
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2275,12 +2356,25 @@
   
 
 
-<h1 id="accessories">Accessories</h1>
+<h1 id="recommended-accessories">Recommended Accessories</h1>
+<p>To ensure a smooth integration and operation of your Linkerbot dexterous hands, we recommend several key accessories. These items have been identified as essential during typical laboratory deployments.</p>
+<h2 id="hardware-electrical">Hardware &amp; Electrical</h2>
 <ul>
-<li><strong>Adapter Plates</strong>: Custom aluminum plates for various ISO flanges.</li>
-<li><strong>Cables</strong>: High-flex cables for continuous robotic motion.</li>
-<li><strong>Power Supplies</strong>: Industrial 24V/48V DIN-rail power supplies.</li>
+<li><strong>Certified Power Supply</strong>: A high-quality, regulated DC power supply is critical. It must match the specific voltage and current requirements (<code>[VENDOR_SPEC_REQUIRED]</code>) of your hand model (L20 Lite, L20, or L30) to prevent brownouts during high-torque grasps.</li>
+<li><strong>Emergency Stop Switch</strong>: Required for all demos and workshops. This should be an external hardware cutoff that immediately severs power to the hand motors, independent of the robot arm's safety system.</li>
+<li><strong>Shielded Communication Cable</strong>: Essential for reliable CAN/CAN FD or RS-485 communication. Keep at least two on hand (one active, one spare) as cables routed along robotic arms are subject to wear.</li>
 </ul>
+<h2 id="mounting-tooling">Mounting &amp; Tooling</h2>
+<ul>
+<li><strong>Robot Flange Adapter</strong>: A custom mechanical plate required to mate the Linkerbot wrist pattern to your specific robot arm (e.g., UR5e, Franka Panda).</li>
+<li><strong>Torque Screwdriver</strong>: Required for repeatable, secure mounting of the hand to the adapter plate and flange. Ensuring correct torque prevents loosening during high-acceleration maneuvers.</li>
+</ul>
+<h2 id="testing-demonstration">Testing &amp; Demonstration</h2>
+<ul>
+<li><strong>Demo Object Kit</strong>: A standardized set of objects (bolts, bottles, cups, foam blocks) for testing grasps, validating teleoperation, and showcasing the hand's capabilities in a repeatable manner.</li>
+</ul>
+<h2 id="ordering-information">Ordering Information</h2>
+<p>To order any of these accessories, or to request vendor-specific specifications for your hardware setup, please contact Stonedrum Robotics directly at <strong>info@stonedrum.co</strong>.</p>
 
 
 

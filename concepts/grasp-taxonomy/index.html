@@ -774,6 +774,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grasp Taxonomy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -790,6 +808,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-grasp-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Grasp Library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cutkosky-taxonomy-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cutkosky Taxonomy Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-grasp-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the Grasp Library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defining-custom-poses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining Custom Poses
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2276,12 +2357,128 @@
 
 
 <h1 id="grasp-taxonomy">Grasp Taxonomy</h1>
-<p>We support the Cutkosky grasp taxonomy for standardized manipulation tasks.</p>
-<ul>
-<li><strong>Power Grasps</strong>: Cylindrical, spherical, palmar.</li>
-<li><strong>Precision Grasps</strong>: Pinch, tripod, lateral.</li>
-</ul>
-<p>You can trigger these directly using the <code>Hand.move_to_grasp("pinch")</code> method. See the <a href="../../api-reference/grasp-library/"><code>GraspLibrary</code> API</a> for the full list of supported poses.</p>
+<p>Named grasps are foundational for establishing common vocabularies in manipulation research. Standardizing these poses across the Dexterous Hand SDK ensures high reproducibility when evaluating grasping algorithms, sharing benchmark datasets, and comparing research outcomes.</p>
+<h2 id="the-grasp-library">The Grasp Library</h2>
+<p>The <code>GraspLibrary</code> includes 12 predefined grasp poses, inspired by established robotic taxonomies.</p>
+<table>
+<thead>
+<tr>
+<th>Grasp Name</th>
+<th>Description</th>
+<th>Typical Object</th>
+<th>Joint Angle Range (rad)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>relaxed_open</code></td>
+<td>Slightly open rest posture for transport and inspection.</td>
+<td>None (Idle)</td>
+<td>~0.08</td>
+</tr>
+<tr>
+<td><code>precision_pinch</code></td>
+<td>Thumb and index fingertip contact.</td>
+<td>Pegs, beads</td>
+<td>0.08 - 0.70</td>
+</tr>
+<tr>
+<td><code>tripod</code></td>
+<td>Three-point precision grasp.</td>
+<td>Pens, markers</td>
+<td>0.18 - 0.70</td>
+</tr>
+<tr>
+<td><code>lateral_pinch</code></td>
+<td>Thumb pad against the side of the index finger.</td>
+<td>Cards, keys</td>
+<td>0.18 - 0.72</td>
+</tr>
+<tr>
+<td><code>index_point</code></td>
+<td>Index finger extended, others curled.</td>
+<td>Buttons, screens</td>
+<td>0.00 - 0.86</td>
+</tr>
+<tr>
+<td><code>cylindrical_power</code></td>
+<td>Power grasp wrapping all fingers.</td>
+<td>Handles, bottles</td>
+<td>0.55 - 0.90</td>
+</tr>
+<tr>
+<td><code>spherical_power</code></td>
+<td>Spread-finger power grasp.</td>
+<td>Balls, knobs</td>
+<td>0.62 - 0.82</td>
+</tr>
+<tr>
+<td><code>hook</code></td>
+<td>Fingers curled without thumb opposition.</td>
+<td>Bags, handles</td>
+<td>0.05 - 1.08</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td>Flat extended-finger support posture.</td>
+<td>Trays</td>
+<td>~0.05</td>
+</tr>
+<tr>
+<td><code>open</code></td>
+<td>Alias for <code>relaxed_open</code>.</td>
+<td>None (Idle)</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><code>pinch</code></td>
+<td>Alias for <code>precision_pinch</code>.</td>
+<td>Pegs, beads</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><code>cylindrical</code></td>
+<td>Alias for <code>cylindrical_power</code>.</td>
+<td>Handles, bottles</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cutkosky-taxonomy-overview">Cutkosky Taxonomy Overview</h2>
+<p>The grasp poses are heavily inspired by the Cutkosky grasp taxonomy (Cutkosky 1989), a seminal work in robotics. The taxonomy fundamentally divides grasps into two main branches:
+- <strong>Power Grasps</strong>: Emphasize stability and force. The object is typically held firmly against the palm and the palmar surfaces of the fingers (e.g., <code>cylindrical_power</code>, <code>spherical_power</code>).
+- <strong>Precision Grasps</strong>: Emphasize dexterity and sensitivity. The object is held with the tips of the fingers and thumb, allowing for fine manipulation (e.g., <code>precision_pinch</code>, <code>tripod</code>).</p>
+<h2 id="using-the-grasp-library">Using the Grasp Library</h2>
+<p>You can easily retrieve a predefined pose from the library and command the hand:</p>
+<pre><code class="language-python">from dexterous_hand.hand import Hand
+
+hand = Hand.mock()
+# Retrieve the grasp definition
+tripod_pose = hand.grasps.get(&quot;tripod&quot;)
+
+# Command the hand to move to the grasp
+hand.move_to_grasp(&quot;tripod&quot;)
+</code></pre>
+<h2 id="defining-custom-poses">Defining Custom Poses</h2>
+<p>For specialized tasks, you can define custom grasp poses and integrate them into your workflow:</p>
+<pre><code class="language-python">from dexterous_hand.grasp_library import GraspPose
+
+custom_pose = GraspPose(
+    name=&quot;custom_pinch&quot;,
+    joint_positions_rad={
+        &quot;thumb_flex&quot;: 0.5,
+        &quot;index_flex&quot;: 0.5,
+        &quot;middle_flex&quot;: 0.0,
+        &quot;ring_flex&quot;: 0.0,
+        &quot;little_flex&quot;: 0.0,
+    },
+    description=&quot;A moderate pinch for fragile objects.&quot;
+)
+
+# Command the custom positions directly
+hand.move_joints(custom_pose.joint_positions_rad)
+</code></pre>
+<p><strong>Research Citation Note</strong>: If utilizing these standard poses in academic work, consider referencing the foundational taxonomy: <em>Cutkosky, M. R. (1989). On grasp choice, grasp models, and the design of hands for manufacturing tasks. IEEE Transactions on Robotics and Automation, 5(3), 269-279.</em></p>
 
 
 

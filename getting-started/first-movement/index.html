@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#first-movement" class="md-skip">
+        <a href="#your-first-movement" class="md-skip">
           Skip to content
         </a>
       
@@ -659,6 +659,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Movement
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -675,6 +693,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-mock-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding Mock Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding the Output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2275,33 +2356,47 @@
   
 
 
-<h1 id="first-movement">First Movement</h1>
-<p>Get your hand moving in under 5 minutes with hardware connected, or 2 minutes in simulation.</p>
-<p>Create a file named <code>hello_hand.py</code>:</p>
-<pre><code class="language-python">from dexterous_hand import Hand
+<h1 id="your-first-movement">Your First Movement</h1>
+<p>In this tutorial, you will write your first script to interact with the Dexterous Hand SDK. </p>
+<h2 id="understanding-mock-mode">Understanding Mock Mode</h2>
+<p>Before we connect physical hardware, we will use <strong>Mock Mode</strong>. The SDK's mock interface creates a software simulation of the hand that responds to API commands identically to the real hardware. </p>
+<p>Using Mock Mode is crucial for several reasons:
+1.  <strong>Safety:</strong> It allows you to test logic and movement sequences without risking damage to the physical hand or surrounding environment.
+2.  <strong>Convenience:</strong> You can develop and debug code anywhere, even when the hardware is not available.
+3.  <strong>Verification:</strong> It ensures your software environment is correctly configured before introducing hardware complexities.</p>
+<h2 id="the-code">The Code</h2>
+<p>Let's write a simple script to initialize the mock hand and read its starting joint positions. Create a file named <code>first_movement.py</code> and add the following code:</p>
+<pre><code class="language-python"># Import the Hand class from the SDK
+from dexterous_hand import Hand
 
-def main():
-    # Use Hand.mock() for simulation, or Hand(driver=HardwareDriver()) for real hardware.
-    hand = Hand.mock()
+# Initialize a mock hand instance. This connects to a simulated driver
+# using the default joint configuration.
+hand = Hand.mock()
 
-    print(&quot;Moving joints...&quot;)
-    hand.move_joints({&quot;thumb_flex&quot;: 0.3, &quot;index_flex&quot;: 0.4})
+# Read the current state of all joints from the mock driver
+joints = hand.read_joints()
 
-    for state in hand.read_joints():
-        print(f&quot;{state.name}: {state.position_rad:.2f} rad&quot;)
-
-if __name__ == &quot;__main__&quot;:
-    main()
+# Iterate through the returned joint states and print their names and positions
+for joint in joints:
+    print(f&quot;Joint: {joint.name}, Position: {joint.position_rad} rad&quot;)
 </code></pre>
 <p>Run the script:</p>
-<pre><code class="language-bash">python3 hello_hand.py
+<pre><code class="language-bash">python first_movement.py
 </code></pre>
-<p><strong>Expected Output:</strong></p>
-<pre><code>Moving joints...
-thumb_flex: 0.30 rad
-index_flex: 0.40 rad
-...
+<h2 id="understanding-the-output">Understanding the Output</h2>
+<p>When you execute the script, you should see output similar to this:</p>
+<pre><code class="language-text">Joint: thumb_flex, Position: 0.0 rad
+Joint: index_flex, Position: 0.0 rad
+Joint: middle_flex, Position: 0.0 rad
+Joint: ring_flex, Position: 0.0 rad
+Joint: little_flex, Position: 0.0 rad
 </code></pre>
+<ul>
+<li><strong>Joint:</strong> This identifies the specific articulation point on the hand. By default, the mock driver initializes five joints representing the primary flexion axes of the thumb, index, middle, ring, and little fingers.</li>
+<li><strong>Position:</strong> This is the current angle of the joint, measured in radians (<code>rad</code>). Because we just initialized the mock hand and haven't commanded any movement, all positions are <code>0.0</code>, representing a neutral, open pose.</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<p>Now that you have successfully initialized the hand and read its state, you are ready to command movements. Proceed to the <a href="../hardware-setup/">Hardware Setup</a> to connect your Linkerbot, or continue exploring the SDK in the Grasp Sequence Tutorial.</p>
 
 
 

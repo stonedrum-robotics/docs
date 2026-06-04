@@ -1116,6 +1116,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1132,6 +1150,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-ros-2-vs-python-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to use ROS 2 vs Python SDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2283,7 +2353,31 @@
     TeleopNode[TeleoperationNode] --&gt;|glove_state| TeleopTopic[/teleop/glove_state/]
     GraspActionServer[GraspActionServer] &lt;-- execute_grasp action --&gt; Client
 </code></pre>
-<p>These nodes abstract hardware complexities and enable standard ROS tools like RViz and MoveIt 2.</p>
+<h2 id="architecture">Architecture</h2>
+<p>The ROS 2 integration serves as a bridge between the high-level Python SDK and the distributed ROS 2 ecosystem. At its core, the <code>HandNode</code> directly wraps the SDK's driver interface (such as <code>Hand.mock()</code> or a hardware driver), translating ROS <code>sensor_msgs/JointState</code> commands into native joint movement instructions. Simultaneously, it reads telemetry from the hand at a fixed rate and publishes it to the ROS network. The <code>TeleoperationNode</code> and <code>GraspActionServer</code> layer on top of this, converting human-input formats (like a glove frame) or high-level action goals (like "pinch") into standard joint commands that the <code>HandNode</code> can digest. This modular architecture allows developers to swap the underlying hardware driver seamlessly without affecting the broader robotics stack.</p>
+<h2 id="when-to-use-ros-2-vs-python-sdk">When to use ROS 2 vs Python SDK</h2>
+<p>Choosing between the native Python SDK and the ROS 2 integration depends largely on the scope of your project.</p>
+<p><strong>Use the Python SDK when:</strong>
+- You are writing standalone scripts, simple automation, or unit tests.
+- You want to eliminate network overhead or avoid complex middleware setups.
+- You are running on embedded systems where resources are tightly constrained.</p>
+<p><strong>Use the ROS 2 Integration when:</strong>
+- You need to visualize the hand in RViz.
+- You are planning trajectories using MoveIt 2.
+- You are integrating the hand with other robotic components like a robotic arm, mobile base, or external vision systems.
+- You require distributed logging, parameter management, or recording data to ROS bags.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>To use the Stonedrum Robotics ROS 2 packages, ensure your system meets the following requirements:</p>
+<ul>
+<li><strong>Operating System:</strong> Ubuntu 22.04 or Ubuntu 24.04 (depending on the ROS 2 distribution).</li>
+<li><strong>ROS 2 Distributions Supported:</strong> </li>
+<li>ROS 2 Humble Hawksbill</li>
+<li>ROS 2 Iron Irwini</li>
+<li>ROS 2 Jazzy Jalisco</li>
+<li><strong>Python:</strong> Python 3.10 or higher.</li>
+<li><strong>Dependencies:</strong> The base <code>dexterous_hand</code> Python SDK must be installed and importable in your Python environment. You will also need standard ROS 2 message packages such as <code>sensor_msgs</code> and <code>action_msgs</code>.</li>
+</ul>
+<p>If you have questions or encounter issues, please contact us at info@stonedrum.co.</p>
 
 
 

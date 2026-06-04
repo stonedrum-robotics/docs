@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mujoco-simulation" class="md-skip">
+        <a href="#tutorial-5-simulation-with-mujoco" class="md-skip">
           Skip to content
         </a>
       
@@ -1399,6 +1399,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MuJoCo Sim
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1415,6 +1433,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mujoco-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MuJoCo Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linkerbot-mjcf-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linkerbot MJCF Specifications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mock-driver-swap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mock Driver Swap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#community-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Community Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2275,12 +2356,38 @@
   
 
 
-<h1 id="mujoco-simulation">MuJoCo Simulation</h1>
-<p>A high-fidelity MuJoCo XML model is provided for reinforcement learning.</p>
-<p>See <code>examples/05_sim_mujoco.py</code>.</p>
-<pre><code class="language-bash">python3 examples/05_sim_mujoco.py
+<h1 id="tutorial-5-simulation-with-mujoco">Tutorial 5: Simulation with MuJoCo</h1>
+<p>Physical hardware can be slow to test and risky during early development. Using MuJoCo allows for rapid prototyping of contact-rich manipulation tasks with high fidelity physics. This tutorial elaborates on <code>examples/05_sim_mujoco.py</code>.</p>
+<h2 id="mujoco-setup">MuJoCo Setup</h2>
+<p>MuJoCo uses MJCF (MuJoCo XML) formats to define rigid body dynamics, collision meshes, and actuators. To simulate the Stonedrum Robotics hand, you need the official MJCF assets.</p>
+<p>Currently, the SDK expects you to place these assets in a shared resource directory.</p>
+<h2 id="linkerbot-mjcf-specifications">Linkerbot MJCF Specifications</h2>
+<p>The Linkerbot hand requires precise mass and inertia definitions to simulate accurately. However, the exact actuator dynamics, friction coefficients, and tendon routings are vendor-specific.</p>
+<p><code>[VENDOR_SPEC_REQUIRED]</code></p>
+<p>Please consult the vendor documentation for the exact Linkerbot hardware specifications required to accurately populate your MJCF <code>actuator</code> and <code>tendon</code> tags. We do not distribute proprietary CAD or mass matrix data in the open-source SDK.</p>
+<h2 id="mock-driver-swap">Mock Driver Swap</h2>
+<p>To use the simulation, you must replace the standard SDK hardware driver with a MuJoCo interface bridge. Instead of using <code>Hand.mock()</code>, you will map the <code>Hand.move_joints()</code> commands to MuJoCo <code>ctrl</code> arrays.</p>
+<p>A basic swap looks like this:</p>
+<pre><code class="language-python">from dexterous_hand import Hand
+import mujoco
+
+# Load model
+model = mujoco.MjModel.from_xml_path(&quot;path/to/linkerbot.xml&quot;)
+data = mujoco.MjData(model)
+
+def apply_sim_commands(joint_targets_rad):
+    # Map target dictionary to MuJoCo control array based on actuator names
+    for name, value in joint_targets_rad.items():
+        actuator_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_ACTUATOR, name)
+        data.ctrl[actuator_id] = value
+
+# Assuming a custom Hand subclass for simulation:
+# sim_hand = MujocoHand(apply_sim_commands)
 </code></pre>
-<p>The model includes correct inertial properties, collision meshes, and actuator definitions suitable for training policies before hardware deployment.</p>
+<h2 id="community-models">Community Models</h2>
+<p>Because accurate simulation models require vendor specs (<code>[VENDOR_SPEC_REQUIRED]</code>), many users rely on community-maintained approximations for initial testing. </p>
+<p>You can find community-contributed MJCF models on platforms like GitHub and the MuJoCo Menagerie. Always verify the physical accuracy of community models against your real hardware before relying on them for fine contact tasks.</p>
+<p>For inquiries about official simulation partnerships, email info@stonedrum.co.</p>
 
 
 

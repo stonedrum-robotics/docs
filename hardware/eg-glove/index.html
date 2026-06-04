@@ -1713,6 +1713,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EG Glove
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1729,6 +1747,75 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#software-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Software Integration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Software Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calibration-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calibration Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teleoperation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teleoperation Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note-on-read_glove_frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Note on read_glove_frame()
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2276,9 +2363,25 @@
 
 
 <h1 id="eg-glove">EG Glove</h1>
-<p>The EG Glove provides high-fidelity motion capture for teleoperation.</p>
-<p>Connect via USB or Bluetooth. Ensure proper calibration before starting teleoperation nodes.</p>
-<p><strong>Note</strong>: CE certification status is currently under verification — please contact Stonedrum Robotics for the latest compliance documentation.</p>
+<p>The EG Glove is a wireless motion-capture exoskeleton glove designed for seamless teleoperation of Linkerbot dexterous hands. Built by Stonedrum Robotics, the glove provides high-fidelity tracking of human hand movements with a capture precision of 0.005°. Weighing just 190g and utilizing ESP-NOW wireless transmission (50Hz, 20m indoor range), it offers an untethered and ergonomic solution for collecting human demonstration data or controlling robotic hands in real-time.</p>
+<h2 id="software-integration">Software Integration</h2>
+<p>The EG Glove connects to the Linkerbot SDK via the <code>TeleoperationController</code> class, which handles the mapping of glove telemetry to robotic hand commands.</p>
+<h3 id="calibration-steps">Calibration Steps</h3>
+<ol>
+<li>Power on the EG Glove and ensure the wireless receiver is connected to the host PC.</li>
+<li>Hold your hand in a flat, relaxed pose.</li>
+<li>Trigger the zero-calibration routine via the SDK (<code>[VENDOR_SPEC_REQUIRED]</code> for exact API call).</li>
+<li>Perform a full fist closure to calibrate the maximum joint limits.</li>
+</ol>
+<h3 id="teleoperation-flow">Teleoperation Flow</h3>
+<p>The standard software loop for controlling a hand with the EG Glove is as follows:</p>
+<ol>
+<li><strong><code>read_glove_frame()</code></strong>: This method polls the glove hardware for the latest joint angles and returns a normalized <code>TeleoperationFrame</code>.</li>
+<li><strong><code>apply_frame()</code></strong>: The controller receives the frame and processes it.</li>
+<li><strong><code>hand.move_joints()</code></strong>: The joint targets from the frame are sent to the robotic hand hardware for execution.</li>
+</ol>
+<h3 id="note-on-read_glove_frame">Note on <code>read_glove_frame()</code></h3>
+<p>Currently, the <code>read_glove_frame()</code> method in the base SDK raises a <code>NotImplementedError("Glove device integration is vendor-specific.")</code>. Because different labs use different receivers and serial protocols for the ESP-NOW bridge, the exact hardware reading logic must be implemented by the user or provided via a vendor-specific plugin. You must subclass <code>TeleoperationController</code> and implement <code>read_glove_frame()</code> to interface with your specific receiver hardware.</p>
 
 
 

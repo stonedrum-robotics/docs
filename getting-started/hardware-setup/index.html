@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hardware-setup" class="md-skip">
+        <a href="#hardware-setup-linkerbot" class="md-skip">
           Skip to content
         </a>
       
@@ -631,6 +631,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -647,6 +665,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unboxing-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unboxing Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-supply-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Power Supply Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#communication-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Communication Connection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-power-on-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First Power-On Sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#switching-from-mock-to-hardware-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switching from Mock to Hardware Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compliance-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance Note
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2275,15 +2378,64 @@
   
 
 
-<h1 id="hardware-setup">Hardware Setup</h1>
-<p>Follow these steps to safely unpack and connect your dexterous hand.</p>
+<h1 id="hardware-setup-linkerbot">Hardware Setup: Linkerbot</h1>
+<p>This guide covers the physical setup and initial configuration of the Stonedrum Robotics Linkerbot hardware.</p>
+<h2 id="unboxing-checklist">Unboxing Checklist</h2>
+<p>When you receive your Linkerbot package, please verify that it contains the following items:</p>
+<ul>
+<li>1x Linkerbot Dexterous Hand Unit</li>
+<li>1x Power Supply Unit (24V)</li>
+<li>1x CAN Bus Communication Cable</li>
+<li>1x USB-to-CAN Adapter</li>
+<li>Mounting Hardware Kit <code>[VENDOR_SPEC_REQUIRED]</code></li>
+<li>Quick Start Documentation</li>
+</ul>
+<p>If any items are missing or damaged, please contact support at info@stonedrum.co immediately.</p>
+<h2 id="power-supply-requirements">Power Supply Requirements</h2>
+<p>The Linkerbot requires a stable power source to operate safely and effectively. </p>
+<ul>
+<li><strong>Voltage:</strong> 24V DC</li>
+<li><strong>Current:</strong> <code>[VENDOR_SPEC_REQUIRED]</code> Amps minimum.</li>
+</ul>
+<p>Ensure that the provided power supply or your custom power distribution system meets these specifications. Supplying incorrect voltage or insufficient current can result in erratic behavior or permanent damage to the hardware.</p>
+<h2 id="communication-connection">Communication Connection</h2>
+<p>The Linkerbot communicates with the host computer via a CAN bus interface.</p>
 <ol>
-<li><strong>Unboxing</strong>: Carefully remove the hand from the Pelican case. Do not apply force to the fingers during unboxing.</li>
-<li><strong>Mounting</strong>: Use the provided adapter plate to mount the hand to your robot arm flange (e.g., ISO 9409-1-50-4-M6).</li>
-<li><strong>Cabling</strong>: Connect the power and communication cables (CAN/RS485).</li>
-<li><strong>Power Supply</strong>: Ensure the power supply is set to the correct voltage (24V or 48V depending on your model) before turning it on.</li>
+<li>Connect the CAN bus cable to the connector on the base of the Linkerbot.</li>
+<li>Connect the other end of the cable to the provided USB-to-CAN adapter.</li>
+<li>Plug the USB-to-CAN adapter into an available USB port on your host computer.</li>
 </ol>
-<p>For detailed pinouts, refer to the <a href="../../hardware/linkerbot-l20/">Hardware Section</a>.</p>
+<p><em>Note: For detailed pinouts and advanced networking configurations, please refer to the wiring diagram in <code>linkerbot-l20.md</code>.</em></p>
+<h2 id="first-power-on-sequence">First Power-On Sequence</h2>
+<p>Safety is paramount when working with robotic hardware. Follow this sequence strictly for your first power-on:</p>
+<ol>
+<li><strong>Clear the Area:</strong> Ensure the Linkerbot has a clear workspace. Remove any obstacles or delicate objects from its immediate vicinity.</li>
+<li><strong>Secure Mounting:</strong> Verify that the hand is securely mounted to a stable base or robotic arm flange.</li>
+<li><strong>Visual Inspection:</strong> Inspect all cables for frays or pinches. Ensure the power and CAN connections are fully seated.</li>
+<li><strong>Power On:</strong> Turn on the 24V power supply. You should see the status LEDs on the hand illuminate.</li>
+<li><strong>Do Not Send Commands Yet:</strong> Wait for the boot sequence to complete (usually indicated by a specific LED pattern). Do not attempt to run any SDK scripts immediately.</li>
+</ol>
+<h2 id="switching-from-mock-to-hardware-mode">Switching from Mock to Hardware Mode</h2>
+<p>Once the hardware is powered and connected, you need to update your code to interface with it rather than the software simulation.</p>
+<p>In your Python scripts, you will transition away from using <code>Hand.mock()</code>. Instead, you will instantiate a hardware driver, connect to the specific CAN interface, and pass that driver to the <code>Hand</code> class.</p>
+<p><em>Example (Conceptual):</em></p>
+<pre><code class="language-python"># Before (Mock Mode)
+# from dexterous_hand import Hand
+# hand = Hand.mock()
+
+# After (Hardware Mode)
+from dexterous_hand import Hand
+from dexterous_hand.driver import HardwareHandDriver # Ensure this is imported
+
+# Replace 'can0' with your actual CAN interface name
+driver = HardwareHandDriver(interface='can0')
+driver.connect()
+hand = Hand(driver=driver)
+
+# Now, hand.move_joints() will move the physical robot.
+</code></pre>
+<h2 id="compliance-note">Compliance Note</h2>
+<p><strong>CE certification status is currently under verification — contact info@stonedrum.co for compliance documentation.</strong></p>
 
 
 

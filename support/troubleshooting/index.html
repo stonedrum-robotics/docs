@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting" class="md-skip">
+        <a href="#troubleshooting-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -2027,6 +2027,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2043,6 +2061,153 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#python-sdk-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python SDK Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Python SDK Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modulenotfounderror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModuleNotFoundError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtimeerror-hand-not-connected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RuntimeError: Hand not connected
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyerror-unknown-joint-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KeyError: unknown joint name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valueerror-joint-position-out-of-bounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ValueError: joint position out of bounds
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros-2-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROS 2 Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ROS 2 Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ros2-package-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROS2 package not found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros2-node-publishes-no-joint-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROS2 node publishes no joint states
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Docker Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-usb-device-not-passed-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker USB device not passed through
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2275,12 +2440,46 @@
   
 
 
-<h1 id="troubleshooting">Troubleshooting</h1>
-<p><strong>Hand fails to connect:</strong>
-- Check power supply.
-- Ensure <code>/dev/ttyUSB0</code> has the correct permissions (<code>sudo usermod -aG dialout $USER</code>).</p>
-<p><strong>ROS 2 Node crashes on start:</strong>
-- Verify that <code>use_mock</code> is correctly set if hardware is not attached.</p>
+<h1 id="troubleshooting-guide">Troubleshooting Guide</h1>
+<p>This guide provides diagnosis and fix strategies for the most common errors encountered when working with the Dexterous Hand SDK.</p>
+<h2 id="python-sdk-errors">Python SDK Errors</h2>
+<h3 id="modulenotfounderror"><code>ModuleNotFoundError</code></h3>
+<ul>
+<li><strong>Diagnosis</strong>: Python cannot locate the <code>dexterous_hand</code> package.</li>
+<li><strong>Fix</strong>: Ensure that your virtual environment is activated and that the package is installed properly (<code>pip install -e .</code> from the repository root).</li>
+</ul>
+<h3 id="runtimeerror-hand-not-connected"><code>RuntimeError: Hand not connected</code></h3>
+<ul>
+<li><strong>Diagnosis</strong>: The SDK attempted physical communication but failed to establish a connection with the hand over USB/Serial.</li>
+<li><strong>Fix</strong>: Check that the physical cable is securely connected. Verify that the correct USB port permissions are set (e.g., <code>sudo usermod -a -G dialout $USER</code> on Linux) and that the device shows up in <code>/dev/ttyUSB*</code> or <code>/dev/ttyACM*</code>.</li>
+</ul>
+<h3 id="keyerror-unknown-joint-name"><code>KeyError: unknown joint name</code></h3>
+<ul>
+<li><strong>Diagnosis</strong>: You provided a joint name to a method (like <code>move_joints</code>) that does not match the standardized naming convention.</li>
+<li><strong>Fix</strong>: Ensure you are only using valid names: <code>thumb_flex</code>, <code>index_flex</code>, <code>middle_flex</code>, <code>ring_flex</code>, <code>little_flex</code>.</li>
+</ul>
+<h3 id="valueerror-joint-position-out-of-bounds"><code>ValueError: joint position out of bounds</code></h3>
+<ul>
+<li><strong>Diagnosis</strong>: The position command violated the soft limits enforced by <code>validate_positions()</code>.</li>
+<li><strong>Fix</strong>: Adjust your target joint angles to ensure they fall within the safe operating range defined in the <code>lower_limits_rad</code> and <code>upper_limits_rad</code> properties.</li>
+</ul>
+<h2 id="ros-2-errors">ROS 2 Errors</h2>
+<h3 id="ros2-package-not-found">ROS2 package not found</h3>
+<ul>
+<li><strong>Diagnosis</strong>: The ROS 2 workspace is not sourced, or the package was not built.</li>
+<li><strong>Fix</strong>: Run <code>colcon build</code> in your workspace root, and ensure you run <code>source install/setup.bash</code> before launching nodes.</li>
+</ul>
+<h3 id="ros2-node-publishes-no-joint-states">ROS2 node publishes no joint states</h3>
+<ul>
+<li><strong>Diagnosis</strong>: The ROS 2 driver node is running, but the <code>/joint_states</code> topic is empty.</li>
+<li><strong>Fix</strong>: Verify hardware connectivity. If using simulation, ensure <code>use_sim_time</code> is correctly configured and the simulator is actively ticking.</li>
+</ul>
+<h2 id="docker-errors">Docker Errors</h2>
+<h3 id="docker-usb-device-not-passed-through">Docker USB device not passed through</h3>
+<ul>
+<li><strong>Diagnosis</strong>: The containerized application fails to detect the hardware, resulting in connection timeouts.</li>
+<li><strong>Fix</strong>: You must explicitly pass the device to the container. Use the <code>--device</code> flag when running the container (e.g., <code>docker run --device=/dev/ttyUSB0 ...</code>) or add the corresponding <code>devices:</code> mapping in your <code>docker-compose.yml</code>.</li>
+</ul>
 
 
 

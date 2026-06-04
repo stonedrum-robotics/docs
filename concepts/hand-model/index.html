@@ -746,6 +746,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hand Model
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -762,6 +780,97 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#degrees-of-freedom-dof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Degrees of Freedom (DOF)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#joint-naming-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Joint Naming Convention
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Representation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="State Representation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jointstate-dataclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JointState Dataclass
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finger-dataclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finger Dataclass
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#joint-limit-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Joint Limit Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2276,14 +2385,40 @@
 
 
 <h1 id="hand-model">Hand Model</h1>
-<p>The dexterous hand is modeled as a kinematic tree. </p>
-<p>Each finger consists of multiple joints, typically covering flexion/extension and abduction/adduction.</p>
-<pre><code class="language-mermaid">graph LR
-    Palm --&gt; Thumb_Base
-    Thumb_Base --&gt; Thumb_Proximal
-    Thumb_Proximal --&gt; Thumb_Distal
-</code></pre>
-<p>Refer to the <a href="../../api-reference/finger/"><code>Finger</code> API reference</a> for the joint naming conventions and ranges.</p>
+<p>The Stonedrum Robotics L20 dexterous hand features a highly capable multi-fingered design tailored for advanced manipulation tasks. Understanding its underlying kinematic and dynamic model is crucial for effective research and development.</p>
+<h2 id="degrees-of-freedom-dof">Degrees of Freedom (DOF)</h2>
+<p>The L20 features a sophisticated 21 DOF model. This is broken down into:
+- <strong>16 Active DOF</strong>: Joints that are directly driven by individual actuators.
+- <strong>5 Coupled DOF</strong>: Joints that are mechanically linked to other active joints, reducing complexity while maintaining natural motion profiles.</p>
+<p>This configuration balances the complexity of the control problem with the dexterity required for fine manipulation tasks.</p>
+<h2 id="joint-naming-convention">Joint Naming Convention</h2>
+<p>The Dexterous Hand SDK uses a standardized naming convention to address the main flexor joints of each finger. When commanding the hand or reading its state, the following joint names are used:
+- <code>thumb_flex</code>
+- <code>index_flex</code>
+- <code>middle_flex</code>
+- <code>ring_flex</code>
+- <code>little_flex</code></p>
+<p>This convention ensures consistency across the SDK, ROS 2 nodes, and simulation environments.</p>
+<h2 id="state-representation">State Representation</h2>
+<p>The SDK represents the hand's state using robust Python dataclasses. </p>
+<h3 id="jointstate-dataclass"><code>JointState</code> Dataclass</h3>
+<p>The <code>JointState</code> dataclass encapsulates the instantaneous state of a single actuated joint. It includes:
+- <code>name</code> (str): The standardized name of the joint.
+- <code>position_rad</code> (float): The current position of the joint in radians.
+- <code>velocity_rad_s</code> (float): The joint velocity in radians per second (defaults to 0.0).
+- <code>effort_nm</code> (float): The joint effort or torque in Newton-meters (defaults to 0.0).</p>
+<h3 id="finger-dataclass"><code>Finger</code> Dataclass</h3>
+<p>The <code>Finger</code> dataclass models a named finger, its ordered joints, and the configured safety limits:
+- <code>name</code> (str): The name of the finger.
+- <code>joint_names</code> (list[str]): An ordered list of joint names associated with the finger.
+- <code>lower_limits_rad</code> (list[float]): The minimum allowable joint angles in radians.
+- <code>upper_limits_rad</code> (list[float]): The maximum allowable joint angles in radians.</p>
+<h2 id="joint-limit-validation">Joint Limit Validation</h2>
+<p>Safety is paramount when working with hardware. The <code>Finger</code> class implements strict position validation via the <code>validate_positions(positions_rad)</code> method. </p>
+<p>When a position command is issued:
+1. The SDK verifies that the number of provided positions matches the number of expected joints.
+2. It iteratively checks each position against its respective <code>lower_limits_rad</code> and <code>upper_limits_rad</code>.</p>
+<p>If any limit is exceeded, the SDK immediately raises a <code>ValueError</code> with a descriptive message (e.g., <code>thumb_flex position 1.200 rad outside [0.000, 1.000]</code>), preventing the hardware from attempting an unsafe or physically impossible configuration.</p>
 
 
 

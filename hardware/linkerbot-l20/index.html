@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linkerbot-l20" class="md-skip">
+        <a href="#linkerbot-l20-l20-lite" class="md-skip">
           Skip to content
         </a>
       
@@ -1719,10 +1719,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wiring" class="md-nav__link">
+  <a href="#pinout-diagram" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Wiring
+        Pinout Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#communication-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Communication Protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mounting-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mounting Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safety-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety Limits
       
     </span>
   </a>
@@ -2334,42 +2367,71 @@
   
 
 
-<h1 id="linkerbot-l20">Linkerbot L20</h1>
-<p>The Linkerbot L20 is the flagship 21-DOF linkage-driven hand for research.</p>
-<h3 id="specifications">Specifications</h3>
+<h1 id="linkerbot-l20-l20-lite">Linkerbot L20 &amp; L20 Lite</h1>
+<p>The Linkerbot L20 and L20 Lite are research-grade dexterous robotic hands designed for advanced manipulation tasks, offering a balance of high degrees of freedom (DOF) and robust linkage-driven kinematics. Built by Stonedrum Robotics, the L20 series is tailored for research laboratories and educational institutions requiring precision grasping, human-like dexterity, and seamless ROS compatibility. The self-developed linkage transmission ensures high rigidity and strong grip force, making it suitable for both complex research experiments and demanding manipulation use cases where tendon-driven systems might lack the required durability.</p>
+<h2 id="specifications">Specifications</h2>
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
-<th>Value</th>
+<th>Model</th>
+<th>DOF</th>
+<th>Drive</th>
+<th>Weight</th>
+<th>Max Load</th>
+<th>Interface</th>
+<th>Primary Use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>DOF</td>
-<td>21 (16 active + 5 coupled)</td>
+<td><strong>L20 Lite</strong></td>
+<td>20 (10+10)</td>
+<td>Linkage</td>
+<td>800g</td>
+<td>25kg</td>
+<td>CAN/RS485 + ROS</td>
+<td>Research entry, education</td>
 </tr>
 <tr>
-<td>Weight</td>
+<td><strong>L20</strong></td>
+<td>21 (16+5)</td>
+<td>Linkage</td>
 <td>1100g</td>
-</tr>
-<tr>
-<td>Load</td>
 <td>10kg</td>
-</tr>
-<tr>
-<td>Communication</td>
-<td>CAN / RS485</td>
+<td>CAN/RS485</td>
+<td>Research flagship</td>
 </tr>
 </tbody>
 </table>
-<h3 id="wiring">Wiring</h3>
-<pre><code class="language-text">Pin 1: VCC (24V)
-Pin 2: GND
-Pin 3: CAN H
-Pin 4: CAN L
+<p><em>Note: Both models achieve ±0.20mm repositioning accuracy.</em></p>
+<h2 id="pinout-diagram">Pinout Diagram</h2>
+<pre><code class="language-text">Linkerbot L20 / L20 Lite Connector Pinout
+┌─────────────────────────────────┐
+│ Pin 1: Power (V+)               │
+│ Pin 2: Ground (GND)             │
+│ Pin 3: CAN_H / RS485_A          │
+│ Pin 4: CAN_L / RS485_B          │
+│ Pin 5: Signal GND               │
+│ Pin 6: Shield                   │
+│ Pin 7-8: [VENDOR_SPEC_REQUIRED] │
+└─────────────────────────────────┘
+* Exact voltage, current, fuse, and inrush values are [VENDOR_SPEC_REQUIRED].
 </code></pre>
-<p><strong>Note</strong>: CE certification status is currently under verification — please contact Stonedrum Robotics for the latest compliance documentation.</p>
+<h2 id="communication-protocol">Communication Protocol</h2>
+<p>The L20 and L20 Lite support both CAN and RS-485 interfaces. 
+- <strong>CAN</strong>: Operates at 1Mbps using a proprietary protocol.
+- <strong>RS-485</strong>: Operates at 115200–256000 bps using Modbus.
+Select the appropriate communication interface based on your controller setup. Both interfaces are fully integrated into the ROS 2 environment provided by the SDK.</p>
+<h2 id="mounting-interface">Mounting Interface</h2>
+<p>The mechanical interface requires an adapter plate to mount the hand to standard robot flanges (e.g., ISO 9409-1-50-4-M6). The Linkerbot-side bolt circle, dowel locations, and wrist orientation are <code>[VENDOR_SPEC_REQUIRED]</code> and must be referenced from the official mechanical drawings. Ensure the mounting plate is rigid and features a clocking mark to reproduce the hand frame if removed.</p>
+<h2 id="safety-limits">Safety Limits</h2>
+<ul>
+<li>Do not exceed the maximum load limits specified above.</li>
+<li>Always operate the hand within the defined input voltage and current specifications (<code>[VENDOR_SPEC_REQUIRED]</code>).</li>
+<li>Ensure the communication cable bundle does not tighten or rub during full wrist motion.</li>
+<li>Implement external emergency stops as required by your lab's safety protocol.</li>
+</ul>
+<p><strong>CE Note:</strong> CE certification status is currently under verification — contact info@stonedrum.co for compliance documentation.</p>
 
 
 

@@ -2198,6 +2198,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2214,6 +2232,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prérequis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-standard-via-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Standard via Python
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-pour-le-developpement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation pour le Développement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-de-lespace-de-travail-ros2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration de l'Espace de Travail ROS2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-avec-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation avec Docker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-de-linstallation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vérification de l'Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolution-des-problemes-courants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Résolution des Problèmes Courants
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2276,15 +2390,75 @@
 
 
 <h1 id="installation">Installation</h1>
-<p>Pour installer le SDK :</p>
+<p>Ce guide détaille toutes les étapes nécessaires pour installer le SDK Dexterous Hand et l'intégrer à votre environnement de développement.</p>
+<h2 id="prerequis">Prérequis</h2>
+<p>Avant d'installer le SDK, assurez-vous que votre système répond aux exigences suivantes :</p>
+<ul>
+<li><strong>Système d'exploitation :</strong> Ubuntu 22.04 LTS ou Ubuntu 24.04 LTS.</li>
+<li><strong>Python :</strong> Python 3.10 ou supérieur.</li>
+<li><strong>ROS2 (Optionnel mais recommandé) :</strong> ROS2 Humble Hawksbill (pour Ubuntu 22.04) ou ROS2 Jazzy Jalisco (pour Ubuntu 24.04).</li>
+</ul>
+<h2 id="installation-standard-via-python">Installation Standard via Python</h2>
+<p>Si vous souhaitez simplement utiliser le SDK sans modifier son code source, vous pouvez l'installer directement via <code>pip</code>.</p>
 <pre><code class="language-bash">pip install dexterous-hand
 </code></pre>
-<p>Si vous utilisez ROS 2 :</p>
-<pre><code class="language-bash">cd ~/ros2_ws/src
-git clone https://github.com/stonedrum-robotics/dexterous-hand-sdk.git
-cd ~/ros2_ws
-colcon build --packages-select dexterous_hand_ros2
+<p><em>Résultat attendu :</em></p>
+<pre><code class="language-text">Successfully installed dexterous-hand-x.y.z
 </code></pre>
+<h2 id="installation-pour-le-developpement">Installation pour le Développement</h2>
+<p>Si vous prévoyez de contribuer au SDK ou de modifier son comportement, nous recommandons une installation éditable. Cela vous permet de modifier le code et d'en voir les effets immédiatement sans avoir à le réinstaller.</p>
+<ol>
+<li>Clonez le dépôt :
+    <code>bash
+    git clone https://github.com/stonedrum-robotics/dexterous-hand-sdk.git
+    cd dexterous-hand-sdk</code></li>
+<li>Installez en mode éditable avec les dépendances de développement :
+    <code>bash
+    pip install -e ".[dev]"</code></li>
+</ol>
+<h2 id="configuration-de-lespace-de-travail-ros2">Configuration de l'Espace de Travail ROS2</h2>
+<p>Pour utiliser le SDK dans un environnement ROS2, vous devez le compiler dans votre espace de travail colcon.</p>
+<ol>
+<li>Accédez au répertoire <code>src</code> de votre espace de travail ROS2 :
+    <code>bash
+    cd ~/ros2_ws/src</code></li>
+<li>Clonez le dépôt :
+    <code>bash
+    git clone https://github.com/stonedrum-robotics/dexterous-hand-sdk.git</code></li>
+<li>Compilez l'espace de travail :
+    <code>bash
+    cd ~/ros2_ws
+    colcon build --packages-select dexterous_hand</code></li>
+<li>Sourcez l'overlay :
+    <code>bash
+    source install/setup.bash</code></li>
+</ol>
+<h2 id="installation-avec-docker">Installation avec Docker</h2>
+<p>Pour un environnement isolé, nous fournissons une image Docker basée sur <code>ros:humble-ros-base</code>. Elle inclut Python, colcon, et une version éditable du SDK préinstallée.</p>
+<ol>
+<li>Accédez au répertoire du SDK :
+    <code>bash
+    cd dexterous-hand-sdk</code></li>
+<li>Construisez l'image Docker en utilisant le <code>docker/Dockerfile</code> fourni :
+    <code>bash
+    docker build -t dexterous-hand-sdk -f docker/Dockerfile .</code></li>
+<li>Lancez le conteneur :
+    <code>bash
+    docker run -it dexterous-hand-sdk</code></li>
+</ol>
+<h2 id="verification-de-linstallation">Vérification de l'Installation</h2>
+<p>Pour confirmer que le SDK est correctement installé, exécutez un test rapide en utilisant l'interface simulée (mock) :</p>
+<pre><code class="language-bash">python -c &quot;from dexterous_hand import Hand; print(Hand.mock())&quot;
+</code></pre>
+<p><em>Résultat attendu :</em></p>
+<pre><code class="language-text">&lt;dexterous_hand.hand.Hand object at 0x...&gt;
+</code></pre>
+<h2 id="resolution-des-problemes-courants">Résolution des Problèmes Courants</h2>
+<p><strong>Erreur :</strong> <code>ModuleNotFoundError: No module named 'dexterous_hand'</code>
+*   <strong>Solution :</strong> Assurez-vous d'avoir activé le bon environnement virtuel Python ou d'avoir sourcé votre espace de travail ROS2 (<code>source install/setup.bash</code>) où le SDK a été installé.</p>
+<p><strong>Erreur :</strong> <code>colcon: command not found</code>
+*   <strong>Solution :</strong> Si vous compilez le paquet ROS2, vous devez installer le paquet <code>python3-colcon-common-extensions</code> via <code>apt</code>. Exécutez <code>sudo apt install python3-colcon-common-extensions</code>.</p>
+<p>Besoin d'aide supplémentaire ? Contactez le support de Stonedrum Robotics à l'adresse info@stonedrum.co.</p>
 
 
 

@@ -1200,6 +1200,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Launch Files
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1216,6 +1234,64 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#available-launch-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Launch Files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Available Launch Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handlaunchpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hand.launch.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2276,13 +2352,45 @@
 
 
 <h1 id="launch-files">Launch Files</h1>
-<p>Launch files simplify starting the hand nodes with the correct parameters.</p>
-<pre><code class="language-bash">ros2 launch dexterous_hand_ros2 hand.launch.py use_mock:=false port:=/dev/ttyUSB0
+<p>The Stonedrum Robotics ROS 2 package provides standard Python-based launch files to initialize the system quickly. These launch files manage node lifecycle, load parameters, and can map topics as necessary.</p>
+<h2 id="available-launch-files">Available Launch Files</h2>
+<h3 id="handlaunchpy"><code>hand.launch.py</code></h3>
+<p>The primary launch file for bringing up the dexterous hand. It starts the <code>HandNode</code> and optionally starts the <code>GraspActionServer</code> and <code>TeleoperationNode</code> based on arguments.</p>
+<p><strong>Arguments:</strong>
+- <code>mock</code> (default: <code>true</code>): If <code>true</code>, the <code>HandNode</code> initializes the software mock driver (<code>Hand.mock()</code>). If <code>false</code>, it connects to physical hardware.
+- <code>use_teleop</code> (default: <code>false</code>): If <code>true</code>, launches the <code>TeleoperationNode</code> with a default keyboard layout.
+- <code>start_action_server</code> (default: <code>true</code>): If <code>true</code>, launches the <code>GraspActionServer</code> to handle high-level named grasps.</p>
+<h2 id="code-example">Code Example</h2>
+<p>To launch the system in simulation/mock mode with the grasp action server running, use the following terminal command:</p>
+<pre><code class="language-bash">ros2 launch dexterous_hand_ros2 hand.launch.py mock:=true start_action_server:=true
 </code></pre>
-<p><strong>Parameters:</strong>
-- <code>use_mock</code>: Set to <code>true</code> for simulation/testing without hardware.
-- <code>port</code>: Serial port for the hardware driver.
-- <code>baudrate</code>: Communication speed.</p>
+<p>To include this launch file inside a larger system launch (like an arm + hand setup), you can use the ROS 2 Python launch API:</p>
+<pre><code class="language-python">from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
+
+def generate_launch_description():
+    hand_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('dexterous_hand_ros2'),
+                'launch',
+                'hand.launch.py'
+            ])
+        ]),
+        launch_arguments={
+            'mock': 'false',
+            'use_teleop': 'false'
+        }.items()
+    )
+
+    return LaunchDescription([
+        hand_launch
+    ])
+</code></pre>
+<p>For advanced configurations, contact us at info@stonedrum.co.</p>
 
 
 

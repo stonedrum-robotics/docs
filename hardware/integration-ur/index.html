@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#universal-robots-ur-integration" class="md-skip">
+        <a href="#universal-robots-integration" class="md-skip">
           Skip to content
         </a>
       
@@ -1741,6 +1741,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UR Integration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1757,6 +1775,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#5-step-integration-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-Step Integration Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros-2-launch-snippet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROS 2 Launch Snippet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2275,13 +2334,34 @@
   
 
 
-<h1 id="universal-robots-ur-integration">Universal Robots (UR) Integration</h1>
-<p>Mounting the hand to a UR5e or UR10e:</p>
+<h1 id="universal-robots-integration">Universal Robots Integration</h1>
+<p>This page summarizes the integration guide for mounting a Linkerbot L20 Lite, L20, or L30 hand on Universal Robots e-Series arms (UR5e / UR10e). </p>
+<p>For the complete, detailed instructions, please refer to the <a href="https://github.com/stonedrum-robotics/hardware-resources/blob/main/integration-guides/ur-series.md">Full UR Series Integration Guide</a>.</p>
+<h2 id="5-step-integration-checklist">5-Step Integration Checklist</h2>
 <ol>
-<li><strong>Mechanical</strong>: Use the standard ISO 9409-1-50-4-M6 adapter plate.</li>
-<li><strong>Electrical</strong>: Route the tool cable through the UR arm or use external dressing.</li>
-<li><strong>ROS 2</strong>: Launch the combined UR + Hand URDF for unified MoveIt 2 planning.</li>
+<li><strong>Mechanical Mounting</strong>: Fabricate and attach a rigid adapter plate (UR-side ISO 9409-1-50-4-M6 to Linkerbot-side <code>[VENDOR_SPEC_REQUIRED]</code>). Torque all M6 fasteners appropriately.</li>
+<li><strong>Electrical Setup</strong>: Provide a dedicated, fused external DC power supply (<code>[VENDOR_SPEC_REQUIRED]</code>). Do NOT power the hand directly from the UR tool connector.</li>
+<li><strong>Communication Setup</strong>: Wire the CAN/CAN FD or RS-485 lines to your host PC using shielded twisted-pair cables. Ensure proper termination (<code>[VENDOR_SPEC_REQUIRED]</code>).</li>
+<li><strong>Robot Configuration</strong>: Update the payload, TCP, and center of gravity in PolyScope to account for the hand, adapter, and cables.</li>
+<li><strong>Software &amp; Testing</strong>: Install the ROS 2 packages, update the URDF with a fixed joint at <code>tool0</code>, and verify communication in mock mode before enabling real hardware motion.</li>
 </ol>
+<h2 id="ros-2-launch-snippet">ROS 2 Launch Snippet</h2>
+<p>Add the following to your ROS 2 launch file to start the hand node alongside the UR driver:</p>
+<pre><code class="language-python">from launch import LaunchDescription
+from launch_ros.actions import Node
+
+def generate_launch_description() -&gt; LaunchDescription:
+    return LaunchDescription(
+        [
+            Node(
+                package=&quot;dexterous_hand_ros2&quot;,
+                executable=&quot;hand_node&quot;,
+                name=&quot;dexterous_hand&quot;,
+                output=&quot;screen&quot;,
+            )
+        ]
+    )
+</code></pre>
 
 
 

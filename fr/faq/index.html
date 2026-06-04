@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#faq-foire-aux-questions" class="md-skip">
+        <a href="#foire-aux-questions-faq" class="md-skip">
           Skip to content
         </a>
       
@@ -2273,11 +2273,37 @@
   
 
 
-<h1 id="faq-foire-aux-questions">FAQ (Foire Aux Questions)</h1>
-<p><strong>1. Le SDK est-il compatible avec MuJoCo ?</strong>
-Oui, des modèles XML sont fournis pour MuJoCo.</p>
-<p><strong>2. Comment contacter le support ?</strong>
-Envoyez un e-mail à info@stonedrum.co.</p>
+<h1 id="foire-aux-questions-faq">Foire Aux Questions (FAQ)</h1>
+<p><strong>1. Qu'est-ce que le SDK Dexterous Hand ?</strong>
+Le SDK Dexterous Hand est une bibliothèque Python fournie par Stonedrum Robotics pour contrôler et interagir avec la main dextre L20.</p>
+<p><strong>2. Quelles versions de Python sont prises en charge ?</strong>
+Le SDK nécessite Python 3.8 ou une version plus récente.</p>
+<p><strong>3. Quels systèmes d'exploitation sont pris en charge ?</strong>
+Nous prenons officiellement en charge Ubuntu Linux et macOS. Windows est pris en charge via WSL2.</p>
+<p><strong>4. Quelles distributions ROS 2 sont compatibles ?</strong>
+Nous prenons actuellement en charge ROS 2 Humble (Ubuntu 22.04) et ROS 2 Jazzy (Ubuntu 24.04).</p>
+<p><strong>5. Puis-je utiliser le SDK sans ROS 2 ?</strong>
+Oui, le paquet Python de base <code>dexterous_hand</code> est totalement indépendant de ROS 2 et peut être utilisé de manière autonome.</p>
+<p><strong>6. Puis-je simuler la main sans le matériel physique ?</strong>
+Oui. Vous pouvez utiliser le mode Mock intégré pour tester le logiciel, ou utiliser nos modèles URDF fournis dans des simulateurs comme Gazebo ou MuJoCo.</p>
+<p><strong>7. Comment activer le mode Mock ?</strong>
+Il suffit d'initialiser la main en utilisant la méthode d'usine mock : <code>hand = Hand.mock()</code>. Cela ne nécessite aucune connexion physique.</p>
+<p><strong>8. Comment définir une posture de préhension personnalisée ?</strong>
+Vous pouvez instancier un objet <code>GraspPose</code> avec les angles d'articulation souhaités et passer le dictionnaire <code>joint_positions_rad</code> directement à <code>hand.move_joints()</code>.</p>
+<p><strong>9. Quels sont les noms d'articulation standardisés ?</strong>
+Les 5 articulations principales utilisées dans le SDK sont <code>thumb_flex</code>, <code>index_flex</code>, <code>middle_flex</code>, <code>ring_flex</code> et <code>little_flex</code>.</p>
+<p><strong>10. MoveIt 2 est-il pris en charge ?</strong>
+Les paquets de configuration MoveIt 2 sont en cours de développement et seront fournis dans une prochaine version pour permettre une planification de mouvement avancée.</p>
+<p><strong>11. La main nécessite-t-elle un étalonnage manuel ?</strong>
+En fonctionnement normal, la main s'étalonne automatiquement au démarrage. L'étalonnage manuel n'est requis que si un actionneur est remplacé.</p>
+<p><strong>12. Pourquoi une erreur <code>NotImplementedError</code> apparaît-elle dans <code>read_glove_frame</code> ?</strong>
+La téléopération via des gants de données est prévue pour une future mise à jour. La signature de la méthode existe mais n'est pas encore implémentée.</p>
+<p><strong>13. Le matériel est-il certifié CE ?</strong>
+La certification CE est actuellement <strong>en cours de vérification</strong>. Pour plus de détails, veuillez contacter info@stonedrum.co.</p>
+<p><strong>14. Comment signaler un bug ou demander une fonctionnalité ?</strong>
+Veuillez utiliser l'outil de suivi des problèmes GitHub (Issues) sur notre dépôt pour signaler des bugs ou soumettre des demandes de fonctionnalités.</p>
+<p><strong>15. Qui contacter pour des questions commerciales ?</strong>
+Pour le support aux entreprises, les prix de gros ou les questions commerciales générales, veuillez contacter Stonedrum Robotics à l'adresse info@stonedrum.co.</p>
 
 
 

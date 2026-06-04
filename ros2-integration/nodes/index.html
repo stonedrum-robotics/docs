@@ -1144,6 +1144,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nodes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1160,6 +1178,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#handnode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HandNode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teleoperationnode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TeleoperationNode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graspactionserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GraspActionServer
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2276,11 +2346,106 @@
 
 
 <h1 id="ros-2-nodes">ROS 2 Nodes</h1>
-<ul>
-<li><strong>HandNode</strong>: The core driver node. It instantiates the <code>Hand</code> class, publishes <code>/hand/joint_states</code>, and subscribes to <code>/hand/joint_commands</code>.</li>
-<li><strong>TeleoperationNode</strong>: Interfaces with the EG Glove or other teleoperation devices, streaming joint targets.</li>
-<li><strong>GraspActionServer</strong>: Provides an Action interface to execute pre-defined grasps from the Grasp Library with feedback.</li>
-</ul>
+<p>The Stonedrum Robotics ROS 2 ecosystem provides three primary nodes to interact with the dexterous hand. Each node manages a specific domain: hardware bridging, human-in-the-loop teleoperation, and high-level grasping logic.</p>
+<h2 id="handnode">HandNode</h2>
+<p><strong>Purpose:</strong> 
+The <code>HandNode</code> serves as the fundamental bridge between the ROS 2 network and the Stonedrum Robotics Python SDK. It instantiates the hardware or mock driver, reads joint states at a fixed loop rate (default 50Hz), and publishes telemetry to <code>/hand/joint_states</code>. It also subscribes to joint commands, converting incoming messages into hardware actuation.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mock_mode</code></td>
+<td>bool</td>
+<td><code>true</code></td>
+<td>If true, initializes <code>Hand.mock()</code>. If false, attempts to connect to real hardware.</td>
+</tr>
+<tr>
+<td><code>publish_rate</code></td>
+<td>double</td>
+<td><code>50.0</code></td>
+<td>The frequency (in Hz) at which joint states are queried and published.</td>
+</tr>
+<tr>
+<td><code>hand_id</code></td>
+<td>string</td>
+<td><code>hand1</code></td>
+<td>Identifier for the hand, used to namespace topics and frame IDs.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to Launch:</strong></p>
+<pre><code class="language-bash">ros2 run dexterous_hand_ros2 hand_node --ros-args -p mock_mode:=false
+</code></pre>
+<p><strong>Example:</strong>
+In a typical use case, you would start the <code>HandNode</code> to get the hand's current position to show up in RViz. </p>
+<h2 id="teleoperationnode">TeleoperationNode</h2>
+<p><strong>Purpose:</strong>
+The <code>TeleoperationNode</code> translates external user input—like a keyboard or a VR glove—into normalized <code>TeleoperationFrame</code> messages. It uses the <code>TeleoperationController</code> from the Python SDK to map these generic frames into specific joint targets for the <code>HandNode</code>. This node abstracts away vendor-specific integrations.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>input_device</code></td>
+<td>string</td>
+<td><code>keyboard</code></td>
+<td>The type of input device (<code>keyboard</code>, <code>glove</code>, etc.).</td>
+</tr>
+<tr>
+<td><code>scaling</code></td>
+<td>double</td>
+<td><code>1.0</code></td>
+<td>A multiplier for the raw input signals before they are converted to joint limits.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to Launch:</strong></p>
+<pre><code class="language-bash">ros2 run dexterous_hand_ros2 teleoperation_node --ros-args -p input_device:=keyboard
+</code></pre>
+<p><strong>Example:</strong>
+Running this node allows a user to press keys on their keyboard to actuate the hand in real-time, streaming the results directly to the <code>/teleop/glove_state</code> topic.</p>
+<h2 id="graspactionserver">GraspActionServer</h2>
+<p><strong>Purpose:</strong>
+The <code>GraspActionServer</code> provides a high-level ROS 2 Action interface for executing named grasps (e.g., "pinch", "cylindrical"). It receives an action goal containing a target grasp string, expands it using the SDK's <code>GraspLibrary</code>, and publishes a smooth trajectory of joint commands to the <code>HandNode</code>. It provides feedback on the grasp's progress and returns a final success state.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>duration</code></td>
+<td>double</td>
+<td><code>2.0</code></td>
+<td>The time (in seconds) the server should take to interpolate from the current pose to the target grasp.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to Launch:</strong></p>
+<pre><code class="language-bash">ros2 run dexterous_hand_ros2 grasp_action_server
+</code></pre>
+<p><strong>Example:</strong>
+A MoveIt 2 pipeline can call this action server to close the hand around an object after the robotic arm has navigated to the pre-grasp pose. The action client waits until the hand confirms it has successfully reached the "pinch" configuration before moving the arm away. For support, reach out to info@stonedrum.co.</p>
 
 
 

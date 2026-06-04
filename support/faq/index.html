@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#faq" class="md-skip">
+        <a href="#frequently-asked-questions-faq" class="md-skip">
           Skip to content
         </a>
       
@@ -2275,14 +2275,37 @@
   
 
 
-<h1 id="faq">FAQ</h1>
-<p><strong>1. What is the difference between L20 and L20 Lite?</strong>
-The L20 Lite is lighter and more suited for educational purposes, while the L20 offers higher payload and industrial-grade linkage.</p>
-<p><strong>2. Is ROS 1 supported?</strong>
-We officially support ROS 2. ROS 1 support is community-driven.</p>
-<p><strong>3. How do I purchase a hand?</strong>
-Please contact us at info@stonedrum.co.</p>
-<p><em>(More FAQs to be added as community questions arise.)</em></p>
+<h1 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h1>
+<p><strong>1. What is the Dexterous Hand SDK?</strong>
+The Dexterous Hand SDK is a Python library provided by Stonedrum Robotics to control and interface with the L20 dexterous hand.</p>
+<p><strong>2. Which Python versions are supported?</strong>
+The SDK requires Python 3.8 or newer.</p>
+<p><strong>3. What operating systems are supported?</strong>
+We officially support Ubuntu Linux and macOS. Windows is supported via WSL2.</p>
+<p><strong>4. Which ROS 2 distributions are supported?</strong>
+We currently support ROS 2 Humble (Ubuntu 22.04) and ROS 2 Jazzy (Ubuntu 24.04).</p>
+<p><strong>5. Can I use the SDK without ROS 2?</strong>
+Yes, the core <code>dexterous_hand</code> Python package is completely independent of ROS 2 and can be run standalone.</p>
+<p><strong>6. Can I simulate the hand without physical hardware?</strong>
+Yes. You can use the built-in Mock Mode for software-in-the-loop testing, or use our provided URDF models in simulators like Gazebo or MuJoCo.</p>
+<p><strong>7. How do I enable Mock Mode?</strong>
+Simply initialize the hand using the mock factory method: <code>hand = Hand.mock()</code>. This requires no physical connection.</p>
+<p><strong>8. How do I define a custom grasp pose?</strong>
+You can instantiate a <code>GraspPose</code> object with your desired joint angles and pass the <code>joint_positions_rad</code> dictionary directly to <code>hand.move_joints()</code>.</p>
+<p><strong>9. What are the standardized joint names?</strong>
+The 5 main joints used in the SDK are <code>thumb_flex</code>, <code>index_flex</code>, <code>middle_flex</code>, <code>ring_flex</code>, and <code>little_flex</code>.</p>
+<p><strong>10. Is MoveIt 2 supported?</strong>
+MoveIt 2 configuration packages are in development and will be provided in a future release to enable advanced motion planning.</p>
+<p><strong>11. Does the hand require manual calibration?</strong>
+Under normal operation, the hand auto-calibrates upon startup. Manual calibration is only required if an actuator is replaced.</p>
+<p><strong>12. Why do I see a <code>NotImplementedError</code> in <code>read_glove_frame</code>?</strong>
+Teleoperation via data gloves is planned for a future update. The method signature exists but is not yet implemented.</p>
+<p><strong>13. Is the hardware CE certified?</strong>
+The CE certification is currently <strong>under verification</strong>. For more details, please contact info@stonedrum.co.</p>
+<p><strong>14. How do I report a bug or request a feature?</strong>
+Please use the GitHub Issues tracker on our repository to report bugs or submit feature requests.</p>
+<p><strong>15. Who do I contact for commercial enquiries?</strong>
+For enterprise support, volume pricing, or general commercial enquiries, please contact Stonedrum Robotics at info@stonedrum.co.</p>
 
 
 

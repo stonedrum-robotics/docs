@@ -1746,6 +1746,50 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pinout-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pinout Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#communication-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Communication Protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mounting-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mounting Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safety-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety Limits
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2324,31 +2368,58 @@
 
 
 <h1 id="linkerbot-l30">Linkerbot L30</h1>
-<p>The Linkerbot L30 offers high precision and tendon-driven mechanisms for medical and delicate manipulation.</p>
-<h3 id="specifications">Specifications</h3>
+<p>The Linkerbot L30 is the flagship dexterous robotic hand from Stonedrum Robotics, engineered for cutting-edge AI and machine learning research. Unlike the linkage-driven L20 series, the L30 features an advanced tendon-driven architecture that closely mimics human hand biomechanics. With 21 degrees of freedom (17 actuated, 4 passive) and an exceptional maximum speed of 440°/s, the L30 is uniquely positioned for reinforcement learning applications where high-speed, biomimetic manipulation is required. Its high-bandwidth CAN FD communication interface enables ultra-low latency control, making it a powerful platform for embodied intelligence and complex teleoperation tasks.</p>
+<h2 id="specifications">Specifications</h2>
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
-<th>Value</th>
+<th>Model</th>
+<th>DOF</th>
+<th>Drive</th>
+<th>Weight</th>
+<th>Max Load</th>
+<th>Interface</th>
+<th>Primary Use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Mechanism</td>
-<td>Tendon-driven</td>
-</tr>
-<tr>
-<td>Speed</td>
-<td>440°/s</td>
-</tr>
-<tr>
-<td>Comm</td>
-<td>CAN FD</td>
+<td><strong>L30</strong></td>
+<td>21 (17+4)</td>
+<td>Tendon</td>
+<td>1400g</td>
+<td>2kg</td>
+<td>CAN FD (5Mbps)</td>
+<td>AI/ML research, biomimetic</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Note</strong>: CE certification status is currently under verification — please contact Stonedrum Robotics for the latest compliance documentation.</p>
+<p><em>Note: The L30 achieves ±0.20mm repositioning accuracy.</em></p>
+<h2 id="pinout-diagram">Pinout Diagram</h2>
+<pre><code class="language-text">Linkerbot L30 Connector Pinout
+┌─────────────────────────────────┐
+│ Pin 1: Power (V+)               │
+│ Pin 2: Ground (GND)             │
+│ Pin 3: CANFD_H                  │
+│ Pin 4: CANFD_L                  │
+│ Pin 5: Signal GND               │
+│ Pin 6: Shield                   │
+│ Pin 7-8: [VENDOR_SPEC_REQUIRED] │
+└─────────────────────────────────┘
+* Exact voltage, current, fuse, and inrush values are [VENDOR_SPEC_REQUIRED].
+</code></pre>
+<h2 id="communication-protocol">Communication Protocol</h2>
+<p>To support its high-speed control requirements, the L30 utilizes CAN FD (Enhanced CAN), capable of speeds up to 5Mbps. This ensures minimal latency when streaming continuous joint trajectories from reinforcement learning policies or teleoperation inputs. Ensure your host system is equipped with a compatible CAN FD interface adapter.</p>
+<h2 id="mounting-interface">Mounting Interface</h2>
+<p>Similar to the L20 series, the L30 requires a custom adapter plate to mate with standard robot flanges. The Linkerbot-side bolt circle, dowel locations, and wrist orientation are <code>[VENDOR_SPEC_REQUIRED]</code>. The mounting solution must account for the 1400g mass of the hand when calculating payload and center of gravity on the host arm.</p>
+<h2 id="safety-limits">Safety Limits</h2>
+<ul>
+<li>The maximum load is limited to 2kg; do not exceed this limit to prevent damage to the tendon drive system.</li>
+<li>Always operate the hand within the defined input voltage and current specifications (<code>[VENDOR_SPEC_REQUIRED]</code>).</li>
+<li>Ensure the communication cable bundle does not tighten or rub during full wrist motion.</li>
+<li>Implement external emergency stops as required by your lab's safety protocol.</li>
+</ul>
+<p><strong>CE Note:</strong> CE certification status is currently under verification — contact info@stonedrum.co for compliance documentation.</p>
 
 
 

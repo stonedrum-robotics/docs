@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#moveit-2-integration" class="md-skip">
+        <a href="#tutorial-4-ros-2-and-moveit-2-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -1371,6 +1371,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MoveIt2
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1387,6 +1405,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#moveit-2-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MoveIt 2 Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#launch-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launch Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#srdf-snippet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SRDF Snippet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2275,12 +2345,45 @@
   
 
 
-<h1 id="moveit-2-integration">MoveIt 2 Integration</h1>
-<p>The dexterous hand provides a full URDF/SRDF configuration package for MoveIt 2.</p>
-<p>To start the MoveIt 2 demo:</p>
-<pre><code class="language-bash">ros2 launch dexterous_hand_moveit_config demo.launch.py
+<h1 id="tutorial-4-ros-2-and-moveit-2-setup">Tutorial 4: ROS 2 and MoveIt 2 Setup</h1>
+<p>Integrating the Stonedrum Robotics dexterous hand with MoveIt 2 allows you to perform complex motion planning, collision avoidance, and trajectory execution. While <code>examples/04_ros2_demo.py</code> shows basic launch commands, this tutorial explains the broader MoveIt 2 setup.</p>
+<h2 id="moveit-2-setup">MoveIt 2 Setup</h2>
+<p>MoveIt 2 relies heavily on the Semantic Robot Description Format (SRDF) and the Universal Robot Description Format (URDF). To use MoveIt 2, you must configure a move group that defines the kinematic chain of the hand.</p>
+<p><strong>Steps to Configure:</strong>
+1. Generate a URDF for your robot arm and attach the Stonedrum hand to the end-effector link.
+2. Use the MoveIt Setup Assistant to generate the MoveIt 2 configuration package.
+3. Define a planning group (e.g., <code>hand</code>) encompassing the finger joints.
+4. Define End Effector (EEF) poses in the SRDF that mirror the Grasp Library (e.g., "open", "pinch").</p>
+<h2 id="launch-steps">Launch Steps</h2>
+<p>Once your MoveIt 2 configuration package is built, you can launch the stack. First, ensure the <code>HandNode</code> is running so joint states are available.</p>
+<p>From your ROS 2 workspace:</p>
+<pre><code class="language-bash"># Terminal 1: Launch the hand node
+ros2 launch dexterous_hand_ros2 hand.launch.py mock:=true
+
+# Terminal 2: Launch MoveIt 2 (assuming a custom config package)
+ros2 launch my_robot_moveit_config demo.launch.py
 </code></pre>
-<p>This launches RViz where you can use the interactive markers to plan collision-free motions for the hand joints or the arm.</p>
+<p>This will open RViz, allowing you to use the interactive markers to plan trajectories for the fingers and arm simultaneously.</p>
+<h2 id="srdf-snippet">SRDF Snippet</h2>
+<p>Here is an example snippet of how you might define the "open" pose in your SRDF file for the hand planning group:</p>
+<pre><code class="language-xml">&lt;robot name=&quot;stonedrum_arm_hand&quot;&gt;
+    &lt;group name=&quot;hand&quot;&gt;
+        &lt;joint name=&quot;thumb_flex&quot; /&gt;
+        &lt;joint name=&quot;index_flex&quot; /&gt;
+        &lt;joint name=&quot;middle_flex&quot; /&gt;
+        &lt;joint name=&quot;ring_flex&quot; /&gt;
+    &lt;/group&gt;
+
+    &lt;!-- Define standard named states --&gt;
+    &lt;group_state name=&quot;open&quot; group=&quot;hand&quot;&gt;
+        &lt;joint name=&quot;thumb_flex&quot; value=&quot;0.0&quot; /&gt;
+        &lt;joint name=&quot;index_flex&quot; value=&quot;0.0&quot; /&gt;
+        &lt;joint name=&quot;middle_flex&quot; value=&quot;0.0&quot; /&gt;
+        &lt;joint name=&quot;ring_flex&quot; value=&quot;0.0&quot; /&gt;
+    &lt;/group_state&gt;
+&lt;/robot&gt;
+</code></pre>
+<p>For more advanced MoveIt 2 configurations or custom IK solvers, contact info@stonedrum.co.</p>
 
 
 
