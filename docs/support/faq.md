@@ -4,7 +4,7 @@
 The Dexterous Hand SDK is a Python library provided by Stonedrum Robotics to control and interface with the L20 dexterous hand.
 
 **2. Which Python versions are supported?**
-The SDK requires Python 3.8 or newer.
+The SDK requires Python 3.10 or newer (3.10, 3.11, and 3.12 are tested in CI).
 
 **3. What operating systems are supported?**
 We officially support Ubuntu Linux and macOS. Windows is supported via WSL2.
