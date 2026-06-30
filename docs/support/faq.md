@@ -44,3 +44,6 @@ Please use the GitHub Issues tracker on our repository to report bugs or submit 
 
 **15. Who do I contact for commercial enquiries?**
 For enterprise support, volume pricing, or general commercial enquiries, please contact Stonedrum Robotics at info@stonedrum.co.
+
+**16. Do you offer training data for dexterous manipulation models?**
+Yes, our Training Data Module is currently in development (targeted for Q4 2026). It will allow you to load third-party and partner datasets directly into your ML pipelines. For more details, see our [Training Data](../concepts/training-data.md) concepts page. Contact `info@stonedrum.co` for early access.

@@ -24,6 +24,7 @@ nav:
       - Grasp Taxonomy: concepts/grasp-taxonomy.md
       - Control Modes: concepts/control-modes.md
       - Safety: concepts/safety.md
+      - Training Data: concepts/training-data.md
   - API Reference:
       - Hand: api-reference/hand.md
       - Finger: api-reference/finger.md
@@ -65,6 +66,7 @@ nav:
       - Démarrage Rapide: fr/demarrage-rapide.md
       - Installation: fr/installation.md
       - FAQ: fr/faq.md
+      - Données d'Entraînement: fr/donnees-entrainement.md
 plugins:
   - search
   - mkdocstrings:

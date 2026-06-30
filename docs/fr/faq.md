@@ -44,3 +44,6 @@ Veuillez utiliser l'outil de suivi des problèmes GitHub (Issues) sur notre dép
 
 **15. Qui contacter pour des questions commerciales ?**
 Pour le support aux entreprises, les prix de gros ou les questions commerciales générales, veuillez contacter Stonedrum Robotics à l'adresse info@stonedrum.co.
+
+**16. Proposez-vous des données d'entraînement pour les modèles de manipulation dextre ?**
+Oui, notre module de données d'entraînement est actuellement en cours de développement (prévu pour le T4 2026). Il vous permettra de charger des jeux de données de tiers et de partenaires directement dans vos pipelines de machine learning. Pour plus de détails, consultez notre page [Données d'Entraînement](donnees-entrainement.md). Contactez `info@stonedrum.co` pour un accès anticipé.
