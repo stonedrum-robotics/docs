@@ -8,6 +8,8 @@
       
       
       
+        <link rel="canonical" href="https://stonedrum-robotics.github.io/docs/getting-started/first-movement/">
+      
       
         <link rel="prev" href="../hardware-setup/">
       
@@ -23,7 +25,7 @@
     
     
       
-        <title>First Movement - Dexterous Hand SDK — Stonedrum Robotics</title>
+        <title>First Movement - Dexterous Hand SDK reference — Stonedrum Robotics</title>
       
     
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#your-first-movement" class="md-skip">
+        <a href="#first-mock-joint-update" class="md-skip">
           Skip to content
         </a>
       
@@ -85,16 +87,12 @@
       
     </div>
     
-      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
-        
-      </div>
-    
     
       
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Dexterous Hand SDK — Stonedrum Robotics" class="md-header__button md-logo" aria-label="Dexterous Hand SDK — Stonedrum Robotics" data-md-component="logo">
+    <a href="../.." title="Dexterous Hand SDK reference — Stonedrum Robotics" class="md-header__button md-logo" aria-label="Dexterous Hand SDK reference — Stonedrum Robotics" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +106,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Dexterous Hand SDK — Stonedrum Robotics
+            Dexterous Hand SDK reference — Stonedrum Robotics
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,7 +180,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/stonedrum-robotics/dexterous-hand-sdk" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/stonedrum-robotics/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -452,17 +450,17 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Dexterous Hand SDK — Stonedrum Robotics" class="md-nav__button md-logo" aria-label="Dexterous Hand SDK — Stonedrum Robotics" data-md-component="logo">
+    <a href="../.." title="Dexterous Hand SDK reference — Stonedrum Robotics" class="md-nav__button md-logo" aria-label="Dexterous Hand SDK reference — Stonedrum Robotics" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Dexterous Hand SDK — Stonedrum Robotics
+    Dexterous Hand SDK reference — Stonedrum Robotics
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/stonedrum-robotics/dexterous-hand-sdk" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/stonedrum-robotics/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -659,24 +657,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    First Movement
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -693,69 +673,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#understanding-mock-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Understanding Mock Mode
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Code
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#understanding-the-output" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Understanding the Output
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -2408,51 +2325,29 @@
                   
 
 
-  
-  
 
-
-<h1 id="your-first-movement">Your First Movement</h1>
-<p>In this tutorial, you will write your first script to interact with the Dexterous Hand SDK. </p>
-<h2 id="understanding-mock-mode">Understanding Mock Mode</h2>
-<p>Before we connect physical hardware, we will use <strong>Mock Mode</strong>. The SDK's mock interface creates a software simulation of the hand that responds to API commands identically to the real hardware. </p>
-<p>Using Mock Mode is crucial for several reasons:
-1.  <strong>Safety:</strong> It allows you to test logic and movement sequences without risking damage to the physical hand or surrounding environment.
-2.  <strong>Convenience:</strong> You can develop and debug code anywhere, even when the hardware is not available.
-3.  <strong>Verification:</strong> It ensures your software environment is correctly configured before introducing hardware complexities.</p>
-<h2 id="the-code">The Code</h2>
-<p>Let's write a simple script to initialize the mock hand and read its starting joint positions. Create a file named <code>first_movement.py</code> and add the following code:</p>
-<pre><code class="language-python"># Import the Hand class from the SDK
+<h1 id="first-mock-joint-update">First mock joint update</h1>
+<p>After <a href="../installation/">source setup</a>, run from the pinned SDK directory:</p>
+<pre><code class="language-bash">PYTHONPATH=. python3 - &lt;&lt;'PYTHON'
 from dexterous_hand import Hand
 
-# Initialize a mock hand instance. This connects to a simulated driver
-# using the default joint configuration.
 hand = Hand.mock()
-
-# Read the current state of all joints from the mock driver
-joints = hand.read_joints()
-
-# Iterate through the returned joint states and print their names and positions
-for joint in joints:
-    print(f&quot;Joint: {joint.name}, Position: {joint.position_rad} rad&quot;)
+hand.move_joints({&quot;thumb_flex&quot;: 0.25, &quot;index_flex&quot;: 0.4})
+for state in hand.read_joints():
+    print(f&quot;{state.name}: {state.position_rad:.2f} rad&quot;)
+hand.open()
+hand.stop()
+PYTHON
 </code></pre>
-<p>Run the script:</p>
-<pre><code class="language-bash">python first_movement.py
+<p>Expected joint-state output:</p>
+<pre><code class="language-text">thumb_flex: 0.25 rad
+index_flex: 0.40 rad
+middle_flex: 0.00 rad
+ring_flex: 0.00 rad
+little_flex: 0.00 rad
 </code></pre>
-<h2 id="understanding-the-output">Understanding the Output</h2>
-<p>When you execute the script, you should see output similar to this:</p>
-<pre><code class="language-text">Joint: thumb_flex, Position: 0.0 rad
-Joint: index_flex, Position: 0.0 rad
-Joint: middle_flex, Position: 0.0 rad
-Joint: ring_flex, Position: 0.0 rad
-Joint: little_flex, Position: 0.0 rad
-</code></pre>
-<ul>
-<li><strong>Joint:</strong> This identifies the specific articulation point on the hand. By default, the mock driver initializes five joints representing the primary flexion axes of the thumb, index, middle, ring, and little fingers.</li>
-<li><strong>Position:</strong> This is the current angle of the joint, measured in radians (<code>rad</code>). Because we just initialized the mock hand and haven't commanded any movement, all positions are <code>0.0</code>, representing a neutral, open pose.</li>
-</ul>
-<h2 id="next-steps">Next Steps</h2>
-<p>Now that you have successfully initialized the hand and read its state, you are ready to command movements. Proceed to the <a href="../hardware-setup/">Hardware Setup</a> to connect your Linkerbot, or continue exploring the SDK in the Grasp Sequence Tutorial.</p>
+<p><code>Hand.mock()</code> starts with five stored zero positions. <code>move_joints()</code> updates the named entries, and <code>read_joints()</code> returns their software state. <code>open()</code> requests zero targets for the reported joints. <code>stop()</code> checks the mock connection and performs no physical action.</p>
+<p>This example neither moves a device nor simulates one. Swapping a constructor does not provide a working hardware integration: current vendor adapters reject unsupported operations. See <a href="../hardware-setup/">hardware setup status</a>.</p>
 
 
 
@@ -2529,7 +2424,7 @@ Joint: little_flex, Position: 0.0 rad
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

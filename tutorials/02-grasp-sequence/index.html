@@ -8,6 +8,8 @@
       
       
       
+        <link rel="canonical" href="https://stonedrum-robotics.github.io/docs/tutorials/02-grasp-sequence/">
+      
       
         <link rel="prev" href="../01-basic-control/">
       
@@ -23,7 +25,7 @@
     
     
       
-        <title>Grasp Sequence - Dexterous Hand SDK — Stonedrum Robotics</title>
+        <title>Grasp Sequence - Dexterous Hand SDK reference — Stonedrum Robotics</title>
       
     
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorial-2-grasp-sequences" class="md-skip">
+        <a href="#tutorial-2-named-target-sequences" class="md-skip">
           Skip to content
         </a>
       
@@ -85,16 +87,12 @@
       
     </div>
     
-      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
-        
-      </div>
-    
     
       
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Dexterous Hand SDK — Stonedrum Robotics" class="md-header__button md-logo" aria-label="Dexterous Hand SDK — Stonedrum Robotics" data-md-component="logo">
+    <a href="../.." title="Dexterous Hand SDK reference — Stonedrum Robotics" class="md-header__button md-logo" aria-label="Dexterous Hand SDK reference — Stonedrum Robotics" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +106,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Dexterous Hand SDK — Stonedrum Robotics
+            Dexterous Hand SDK reference — Stonedrum Robotics
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,7 +180,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/stonedrum-robotics/dexterous-hand-sdk" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/stonedrum-robotics/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -452,17 +450,17 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Dexterous Hand SDK — Stonedrum Robotics" class="md-nav__button md-logo" aria-label="Dexterous Hand SDK — Stonedrum Robotics" data-md-component="logo">
+    <a href="../.." title="Dexterous Hand SDK reference — Stonedrum Robotics" class="md-nav__button md-logo" aria-label="Dexterous Hand SDK reference — Stonedrum Robotics" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Dexterous Hand SDK — Stonedrum Robotics
+    Dexterous Hand SDK reference — Stonedrum Robotics
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/stonedrum-robotics/dexterous-hand-sdk" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/stonedrum-robotics/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -1394,41 +1392,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#annotated-walkthrough" class="md-nav__link">
+  <a href="#inspect-the-state-behind-the-labels" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Annotated Walkthrough
+        Inspect the state behind the labels
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Annotated Walkthrough">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cutkosky-poses-explained" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cutkosky Poses Explained
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#expected-output" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Expected Output
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2414,56 +2384,25 @@
                   
 
 
-  
-  
 
+<h1 id="tutorial-2-named-target-sequences">Tutorial 2: named target sequences</h1>
+<p>The SDK's <code>examples/02_grasp_sequence.py</code> creates <code>Hand.mock()</code> and calls <code>move_to_grasp()</code> for <code>open</code>, <code>pinch</code>, <code>cylindrical</code>, <code>open</code>, printing each name. Those are dictionary lookups and stored position updates; they do not establish a physical grasp.</p>
+<h2 id="inspect-the-state-behind-the-labels">Inspect the state behind the labels</h2>
+<pre><code class="language-python">from dexterous_hand import Hand
 
-<h1 id="tutorial-2-grasp-sequences">Tutorial 2: Grasp Sequences</h1>
-<p>Manipulating a dexterous hand joint-by-joint is tedious. To simplify manipulation tasks, the Stonedrum Robotics SDK includes a Grasp Library that maps named poses to specific joint configurations. In this tutorial, we will walk through <code>examples/02_grasp_sequence.py</code>.</p>
-<h2 id="annotated-walkthrough">Annotated Walkthrough</h2>
-<p>Let's examine the code:</p>
-<pre><code class="language-python">&quot;&quot;&quot;Run a simple grasp sequence.&quot;&quot;&quot;
-
-# The Hand class exposes named grasps through its built-in GraspLibrary.
-from dexterous_hand import Hand
-
-def main() -&gt; None:
-    &quot;&quot;&quot;Move through open, pinch, cylindrical, and open poses.&quot;&quot;&quot;
-    # Use mock mode first; swap in a hardware driver only after safety checks.
-    hand = Hand.mock()
-
-    # The sequence starts and ends open so a demo begins from a safe posture.
-    for grasp in [&quot;open&quot;, &quot;pinch&quot;, &quot;cylindrical&quot;, &quot;open&quot;]:
-        # Named grasps expand to joint targets inside dexterous_hand/grasp_library.py.
-        hand.move_to_grasp(grasp)
-
-        # Printing each step makes the sequence easy to follow in a terminal demo.
-        print(f&quot;Applied grasp: {grasp}&quot;)
-
-if __name__ == &quot;__main__&quot;:
-    main()
+hand = Hand.mock()
+for name in [&quot;open&quot;, &quot;pinch&quot;, &quot;cylindrical&quot;, &quot;open&quot;]:
+    hand.move_to_grasp(name)
+    print(name, {s.name: s.position_rad for s in hand.read_joints()})
 </code></pre>
-<h3 id="cutkosky-poses-explained">Cutkosky Poses Explained</h3>
-<p>The grasps built into the SDK are heavily inspired by the <strong>Cutkosky Grasp Taxonomy</strong>, a standard classification system in robotics for human hand grasping. 
-- <strong><code>open</code></strong>: All joints are extended. This is the resting, safe pose used to approach an object.
-- <strong><code>pinch</code></strong>: The thumb and index finger form a precision grip, useful for picking up small items like screws or coins.
-- <strong><code>cylindrical</code></strong>: The fingers wrap uniformly to grip curved, tubular objects like a pipe or a bottle.</p>
-<p>By using these named poses, your application logic becomes much easier to read and maintain. The SDK's <code>GraspLibrary</code> handles the complex math of mapping these high-level concepts into exact radian values for every individual joint on the Linkerbot hand.</p>
-<h3 id="expected-output">Expected Output</h3>
-<p>If you run the script, you should see the following output in your terminal:</p>
-<pre><code class="language-text">Applied grasp: open
-Applied grasp: pinch
-Applied grasp: cylindrical
-Applied grasp: open
-</code></pre>
-<p>Because this uses <code>Hand.mock()</code>, the hardware will not move, but the internal state of the driver will update instantly.</p>
+<p>The first <code>open</code> leaves the initially zero values unchanged. The last <code>open</code> also leaves values unchanged, so the cylindrical targets remain stored. Historical example comments saying the sequence ends open are inaccurate. <code>Hand.open()</code> is a different method that requests zero joint targets.</p>
 <h2 id="exercises">Exercises</h2>
-<ol>
-<li><strong>Add a Delay</strong>: Import the Python <code>time</code> module and add a <code>time.sleep(1.0)</code> between each grasp to simulate the time it takes for the hand to physically move.</li>
-<li><strong>Print Joint Telemetry</strong>: After applying a grasp, call <code>hand.read_joints()</code> and print the position of the <code>index_flex</code> joint to observe how different grasps affect specific fingers.</li>
-<li><strong>Explore the Library</strong>: Look at the source code in <code>dexterous_hand/grasp_library.py</code> (if available) to find other named grasps and add them to the loop.</li>
-</ol>
-<p>For help expanding the grasp library, contact info@stonedrum.co.</p>
+<ul>
+<li>Compare <code>open</code>, <code>relaxed_open</code> and <code>Hand.open()</code> using printed software values.</li>
+<li>Retrieve <code>hand.grasps.get("tripod").joint_positions_rad</code> and inspect the values.</li>
+<li>Create a <code>GraspPose</code> for a mock exercise and pass its dictionary to <code>move_joints()</code>.</li>
+</ul>
+<p>The <a href="../../concepts/grasp-taxonomy/">grasp vocabulary</a> gives all nine primary sets and three compatibility entries. Target names and angles are not calibrated object-handling or safe-rest poses for a physical hand.</p>
 
 
 
@@ -2540,7 +2479,7 @@ Applied grasp: open
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

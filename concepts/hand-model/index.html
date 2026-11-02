@@ -8,6 +8,8 @@
       
       
       
+        <link rel="canonical" href="https://stonedrum-robotics.github.io/docs/concepts/hand-model/">
+      
       
         <link rel="prev" href="../../getting-started/first-movement/">
       
@@ -23,7 +25,7 @@
     
     
       
-        <title>Hand Model - Dexterous Hand SDK — Stonedrum Robotics</title>
+        <title>Hand Model - Dexterous Hand SDK reference — Stonedrum Robotics</title>
       
     
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hand-model" class="md-skip">
+        <a href="#hand-and-joint-data-model" class="md-skip">
           Skip to content
         </a>
       
@@ -85,16 +87,12 @@
       
     </div>
     
-      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
-        
-      </div>
-    
     
       
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Dexterous Hand SDK — Stonedrum Robotics" class="md-header__button md-logo" aria-label="Dexterous Hand SDK — Stonedrum Robotics" data-md-component="logo">
+    <a href="../.." title="Dexterous Hand SDK reference — Stonedrum Robotics" class="md-header__button md-logo" aria-label="Dexterous Hand SDK reference — Stonedrum Robotics" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +106,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Dexterous Hand SDK — Stonedrum Robotics
+            Dexterous Hand SDK reference — Stonedrum Robotics
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,7 +180,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/stonedrum-robotics/dexterous-hand-sdk" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/stonedrum-robotics/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -452,17 +450,17 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Dexterous Hand SDK — Stonedrum Robotics" class="md-nav__button md-logo" aria-label="Dexterous Hand SDK — Stonedrum Robotics" data-md-component="logo">
+    <a href="../.." title="Dexterous Hand SDK reference — Stonedrum Robotics" class="md-nav__button md-logo" aria-label="Dexterous Hand SDK reference — Stonedrum Robotics" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Dexterous Hand SDK — Stonedrum Robotics
+    Dexterous Hand SDK reference — Stonedrum Robotics
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/stonedrum-robotics/dexterous-hand-sdk" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/stonedrum-robotics/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -797,10 +795,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#degrees-of-freedom-dof" class="md-nav__link">
+  <a href="#state-and-commands" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Degrees of Freedom (DOF)
+        State and commands
       
     </span>
   </a>
@@ -808,60 +806,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#joint-naming-convention" class="md-nav__link">
+  <a href="#configured-range-checks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Joint Naming Convention
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#state-representation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        State Representation
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="State Representation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#jointstate-dataclass" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        JointState Dataclass
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#finger-dataclass" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Finger Dataclass
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#joint-limit-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Joint Limit Validation
+        Configured range checks
       
     </span>
   </a>
@@ -2436,45 +2384,14 @@
                   
 
 
-  
-  
 
-
-<h1 id="hand-model">Hand Model</h1>
-<p>The Stonedrum Robotics L20 dexterous hand features a highly capable multi-fingered design tailored for advanced manipulation tasks. Understanding its underlying kinematic and dynamic model is crucial for effective research and development.</p>
-<h2 id="degrees-of-freedom-dof">Degrees of Freedom (DOF)</h2>
-<p>The L20 features a sophisticated 21 DOF model. This is broken down into:
-- <strong>16 Active DOF</strong>: Joints that are directly driven by individual actuators.
-- <strong>5 Coupled DOF</strong>: Joints that are mechanically linked to other active joints, reducing complexity while maintaining natural motion profiles.</p>
-<p>This configuration balances the complexity of the control problem with the dexterity required for fine manipulation tasks.</p>
-<h2 id="joint-naming-convention">Joint Naming Convention</h2>
-<p>The Dexterous Hand SDK uses a standardized naming convention to address the main flexor joints of each finger. When commanding the hand or reading its state, the following joint names are used:
-- <code>thumb_flex</code>
-- <code>index_flex</code>
-- <code>middle_flex</code>
-- <code>ring_flex</code>
-- <code>little_flex</code></p>
-<p>This convention ensures consistency across the SDK, ROS 2 nodes, and simulation environments.</p>
-<h2 id="state-representation">State Representation</h2>
-<p>The SDK represents the hand's state using robust Python dataclasses. </p>
-<h3 id="jointstate-dataclass"><code>JointState</code> Dataclass</h3>
-<p>The <code>JointState</code> dataclass encapsulates the instantaneous state of a single actuated joint. It includes:
-- <code>name</code> (str): The standardized name of the joint.
-- <code>position_rad</code> (float): The current position of the joint in radians.
-- <code>velocity_rad_s</code> (float): The joint velocity in radians per second (defaults to 0.0).
-- <code>effort_nm</code> (float): The joint effort or torque in Newton-meters (defaults to 0.0).</p>
-<h3 id="finger-dataclass"><code>Finger</code> Dataclass</h3>
-<p>The <code>Finger</code> dataclass models a named finger, its ordered joints, and the configured safety limits:
-- <code>name</code> (str): The name of the finger.
-- <code>joint_names</code> (list[str]): An ordered list of joint names associated with the finger.
-- <code>lower_limits_rad</code> (list[float]): The minimum allowable joint angles in radians.
-- <code>upper_limits_rad</code> (list[float]): The maximum allowable joint angles in radians.</p>
-<h2 id="joint-limit-validation">Joint Limit Validation</h2>
-<p>Safety is paramount when working with hardware. The <code>Finger</code> class implements strict position validation via the <code>validate_positions(positions_rad)</code> method. </p>
-<p>When a position command is issued:
-1. The SDK verifies that the number of provided positions matches the number of expected joints.
-2. It iteratively checks each position against its respective <code>lower_limits_rad</code> and <code>upper_limits_rad</code>.</p>
-<p>If any limit is exceeded, the SDK immediately raises a <code>ValueError</code> with a descriptive message (e.g., <code>thumb_flex position 1.200 rad outside [0.000, 1.000]</code>), preventing the hardware from attempting an unsafe or physically impossible configuration.</p>
+<h1 id="hand-and-joint-data-model">Hand and joint data model</h1>
+<p><code>Hand.mock()</code> uses the software joint names <code>thumb_flex</code>, <code>index_flex</code>, <code>middle_flex</code>, <code>ring_flex</code> and <code>little_flex</code>. These five names do not describe the full kinematic structure or degrees of freedom of any named hardware product.</p>
+<h2 id="state-and-commands">State and commands</h2>
+<p><code>JointState</code> contains <code>name</code>, <code>position_rad</code>, <code>velocity_rad_s</code> and <code>effort_nm</code>. The mock returns stored position values; velocity and effort remain their default zero values. They are not sensor measurements. A position command is a dictionary mapping known joint names to values in radians; unknown names raise <code>KeyError</code> in the mock.</p>
+<h2 id="configured-range-checks">Configured range checks</h2>
+<p><code>Finger</code> holds ordered joint names and lower/upper ranges. Its <code>validate_positions()</code> checks the supplied list length and values against those configured ranges. That method is separate from <code>Hand.move_joints()</code>; the mock command path does not automatically call it. These checks do not establish collision avoidance, physical joint protection or a safety-rated controller.</p>
+<p>See the <a href="../../api-reference/finger/">Finger API</a> and <a href="../control-modes/">control behavior</a> for the exact software interfaces.</p>
 
 
 
@@ -2551,7 +2468,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

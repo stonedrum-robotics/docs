@@ -8,6 +8,8 @@
       
       
       
+        <link rel="canonical" href="https://stonedrum-robotics.github.io/docs/tutorials/03-teleoperation/">
+      
       
         <link rel="prev" href="../02-grasp-sequence/">
       
@@ -23,7 +25,7 @@
     
     
       
-        <title>Teleoperation - Dexterous Hand SDK — Stonedrum Robotics</title>
+        <title>Teleoperation - Dexterous Hand SDK reference — Stonedrum Robotics</title>
       
     
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorial-3-teleoperation" class="md-skip">
+        <a href="#tutorial-3-supplied-teleoperation-frames" class="md-skip">
           Skip to content
         </a>
       
@@ -85,16 +87,12 @@
       
     </div>
     
-      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
-        
-      </div>
-    
     
       
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Dexterous Hand SDK — Stonedrum Robotics" class="md-header__button md-logo" aria-label="Dexterous Hand SDK — Stonedrum Robotics" data-md-component="logo">
+    <a href="../.." title="Dexterous Hand SDK reference — Stonedrum Robotics" class="md-header__button md-logo" aria-label="Dexterous Hand SDK reference — Stonedrum Robotics" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +106,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Dexterous Hand SDK — Stonedrum Robotics
+            Dexterous Hand SDK reference — Stonedrum Robotics
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,7 +180,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/stonedrum-robotics/dexterous-hand-sdk" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/stonedrum-robotics/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -452,17 +450,17 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Dexterous Hand SDK — Stonedrum Robotics" class="md-nav__button md-logo" aria-label="Dexterous Hand SDK — Stonedrum Robotics" data-md-component="logo">
+    <a href="../.." title="Dexterous Hand SDK reference — Stonedrum Robotics" class="md-nav__button md-logo" aria-label="Dexterous Hand SDK reference — Stonedrum Robotics" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Dexterous Hand SDK — Stonedrum Robotics
+    Dexterous Hand SDK reference — Stonedrum Robotics
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/stonedrum-robotics/dexterous-hand-sdk" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/stonedrum-robotics/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -1422,41 +1420,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#annotated-walkthrough" class="md-nav__link">
+  <a href="#exercises" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Annotated Walkthrough
+        Exercises
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Annotated Walkthrough">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#teleoperationcontroller-and-read_glove_frame" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        TeleoperationController and read_glove_frame
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#keyboard-controls-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Keyboard Controls Table
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2403,86 +2373,21 @@
                   
 
 
-  
-  
 
-
-<h1 id="tutorial-3-teleoperation">Tutorial 3: Teleoperation</h1>
-<p>Teleoperation involves controlling a robot in real-time using human input. The Stonedrum Robotics SDK provides a robust <code>TeleoperationController</code> to standardize inputs from VR gloves, keyboards, or joysticks. This tutorial walks through <code>examples/03_teleoperation_keyboard.py</code>.</p>
-<h2 id="annotated-walkthrough">Annotated Walkthrough</h2>
-<p>Here is the example code:</p>
-<pre><code class="language-python">&quot;&quot;&quot;Keyboard teleoperation placeholder.&quot;&quot;&quot;
-
-from dexterous_hand import Hand
+<h1 id="tutorial-3-supplied-teleoperation-frames">Tutorial 3: supplied teleoperation frames</h1>
+<p><code>examples/03_teleoperation_keyboard.py</code> is a canned mock example. It does not read keyboard events or a glove. The useful software boundary is a frame containing supplied target values:</p>
+<pre><code class="language-python">from dexterous_hand import Hand
 from dexterous_hand.teleoperation import TeleoperationController, TeleoperationFrame
 
-def main() -&gt; None:
-    &quot;&quot;&quot;Apply a canned teleoperation frame in mock mode.&quot;&quot;&quot;
-    # Mock mode keeps the example deterministic and hardware-free.
-    hand = Hand.mock()
-
-    # The controller owns the translation from frames to Hand.move_joints calls.
-    controller = TeleoperationController(hand)
-
-    # This canned frame stands in for a keyboard event that curls thumb and index.
-    controller.apply_frame(TeleoperationFrame({&quot;thumb_flex&quot;: 0.5, &quot;index_flex&quot;: 0.5}, &quot;keyboard&quot;))
-
-    # In a real keyboard loop, this print would be replaced by live status feedback.
-    print(&quot;Applied keyboard teleoperation frame&quot;)
-
-if __name__ == &quot;__main__&quot;:
-    main()
+hand = Hand.mock()
+controller = TeleoperationController(hand)
+frame = TeleoperationFrame({&quot;thumb_flex&quot;: 0.5, &quot;index_flex&quot;: 0.5}, &quot;exercise&quot;)
+controller.apply_frame(frame)
+print({s.name: s.position_rad for s in hand.read_joints()})
 </code></pre>
-<h3 id="teleoperationcontroller-and-read_glove_frame">TeleoperationController and <code>read_glove_frame</code></h3>
-<p>The <code>TeleoperationController</code> is responsible for receiving normalized <code>TeleoperationFrame</code> objects and applying them safely to the hand driver. A <code>TeleoperationFrame</code> is simply a dictionary of joint targets coupled with a string identifying the source of the data.</p>
-<p>If you inspect the <code>teleoperation.py</code> file, you will notice a method called <code>read_glove_frame()</code> that currently raises a <code>NotImplementedError("Glove device integration is vendor-specific.")</code>. </p>
-<p>Why is this not implemented? VR gloves and motion tracking hardware vary wildly between vendors. A Sensable glove outputs entirely different telemetry formats than an Oculus hand-tracking system. Stonedrum Robotics provides the structured <code>TeleoperationFrame</code> so that you can easily write a vendor-specific parser that maps raw glove sensor values into our standard radian format, ensuring hardware flexibility without rewriting the core SDK logic.</p>
-<h3 id="keyboard-controls-table">Keyboard Controls Table</h3>
-<p>If you were to expand this script to listen to live keyboard events (e.g., using the <code>pynput</code> library or standard terminal curses), a common keymapping structure would look like this:</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Action</th>
-<th>Target Joint</th>
-<th>Radian Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>W</code></td>
-<td>Open Index Finger</td>
-<td><code>index_flex</code></td>
-<td><code>0.0</code></td>
-</tr>
-<tr>
-<td><code>S</code></td>
-<td>Close Index Finger</td>
-<td><code>index_flex</code></td>
-<td><code>1.5</code></td>
-</tr>
-<tr>
-<td><code>E</code></td>
-<td>Open Middle Finger</td>
-<td><code>middle_flex</code></td>
-<td><code>0.0</code></td>
-</tr>
-<tr>
-<td><code>D</code></td>
-<td>Close Middle Finger</td>
-<td><code>middle_flex</code></td>
-<td><code>1.5</code></td>
-</tr>
-<tr>
-<td><code>Space</code></td>
-<td>Open Hand</td>
-<td>All</td>
-<td><code>0.0</code></td>
-</tr>
-</tbody>
-</table>
-<p>You would map keyboard events to generate a <code>TeleoperationFrame</code>, and then pass that frame into <code>controller.apply_frame()</code>.</p>
-<p>If you need assistance integrating a specific vendor's VR glove, please reach out to info@stonedrum.co.</p>
+<p><code>apply_frame()</code> forwards nonempty target dictionaries. An empty dictionary returns without a command. <code>read_glove_frame()</code> raises <code>NotImplementedError</code>; there is no automatic sensor calibration, coordinate mapping or timing loop in this controller.</p>
+<h2 id="exercises">Exercises</h2>
+<p>Supply a second frame and compare values, then supply an empty frame and observe that values remain unchanged. A future live input adapter would need explicit units, coordinate conventions, timestamps and failure handling. This mock exercise does not establish a real rig, data recorder or hardware safety behavior.</p>
 
 
 
@@ -2559,7 +2464,7 @@ if __name__ == &quot;__main__&quot;:
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

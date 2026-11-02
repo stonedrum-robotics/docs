@@ -8,6 +8,8 @@
       
       
       
+        <link rel="canonical" href="https://stonedrum-robotics.github.io/docs/concepts/control-modes/">
+      
       
         <link rel="prev" href="../grasp-taxonomy/">
       
@@ -23,7 +25,7 @@
     
     
       
-        <title>Control Modes - Dexterous Hand SDK — Stonedrum Robotics</title>
+        <title>Control Modes - Dexterous Hand SDK reference — Stonedrum Robotics</title>
       
     
     
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#control-modes" class="md-skip">
+        <a href="#command-and-control-behavior" class="md-skip">
           Skip to content
         </a>
       
@@ -85,16 +87,12 @@
       
     </div>
     
-      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
-        
-      </div>
-    
     
       
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Dexterous Hand SDK — Stonedrum Robotics" class="md-header__button md-logo" aria-label="Dexterous Hand SDK — Stonedrum Robotics" data-md-component="logo">
+    <a href="../.." title="Dexterous Hand SDK reference — Stonedrum Robotics" class="md-header__button md-logo" aria-label="Dexterous Hand SDK reference — Stonedrum Robotics" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +106,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Dexterous Hand SDK — Stonedrum Robotics
+            Dexterous Hand SDK reference — Stonedrum Robotics
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,7 +180,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/stonedrum-robotics/dexterous-hand-sdk" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/stonedrum-robotics/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -452,17 +450,17 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Dexterous Hand SDK — Stonedrum Robotics" class="md-nav__button md-logo" aria-label="Dexterous Hand SDK — Stonedrum Robotics" data-md-component="logo">
+    <a href="../.." title="Dexterous Hand SDK reference — Stonedrum Robotics" class="md-nav__button md-logo" aria-label="Dexterous Hand SDK reference — Stonedrum Robotics" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Dexterous Hand SDK — Stonedrum Robotics
+    Dexterous Hand SDK reference — Stonedrum Robotics
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/stonedrum-robotics/dexterous-hand-sdk" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/stonedrum-robotics/docs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -853,10 +851,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-mode-position-control" class="md-nav__link">
+  <a href="#current-in-memory-behavior" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Current Mode: Position Control
+        Current in-memory behavior
       
     </span>
   </a>
@@ -864,32 +862,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#future-modes-planned" class="md-nav__link">
+  <a href="#validation-and-stopping" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Future Modes [PLANNED]
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#coordinate-frames" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coordinate Frames
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#safety-mechanisms" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Safety Mechanisms
+        Validation and stopping
       
     </span>
   </a>
@@ -2408,34 +2384,15 @@
                   
 
 
-  
-  
 
-
-<h1 id="control-modes">Control Modes</h1>
-<p>The Dexterous Hand SDK provides robust control interfaces for operating the hand in both physical and simulated environments.</p>
-<h2 id="current-mode-position-control">Current Mode: Position Control</h2>
-<p>Presently, the primary control mode exposed by the SDK is <strong>Position Control</strong>. In this mode, users specify target joint angles in radians. </p>
-<p>When a position command is issued:
-1. The desired joint positions are validated against hardware limits.
-2. The targets are transmitted to the hand's low-level controllers.
-3. The internal PID controllers drive the actuators to reach the target angles.</p>
-<p>This mode is ideal for pick-and-place tasks, predefined grasp execution, and kinematic planning.</p>
-<h2 id="future-modes-planned">Future Modes <code>[PLANNED]</code></h2>
-<p>To support advanced manipulation and physical interaction research, future releases will introduce the following modes:
-- <strong>Velocity Control <code>[PLANNED]</code></strong>: Direct commanding of joint velocities (rad/s) for smoother continuous motion profiles.
-- <strong>Torque / Effort Control <code>[PLANNED]</code></strong>: Direct commanding of joint torques (Nm) to enable dynamic tasks and underactuated grasping.
-- <strong>Impedance Control <code>[PLANNED]</code></strong>: Allows tuning of virtual stiffness and damping parameters, enabling compliant interaction with fragile objects and unstructured environments.</p>
-<h2 id="coordinate-frames">Coordinate Frames</h2>
-<p>Understanding the operational spaces is critical for control:
-- <strong>Joint Space</strong>: The native configuration space of the hand. Commands are arrays of joint angles (e.g., <code>thumb_flex = 0.5 rad</code>). The SDK currently operates purely in Joint Space.
-- <strong>Task Space <code>[PLANNED]</code></strong>: The Cartesian space (X, Y, Z, Roll, Pitch, Yaw) representing the position and orientation of the fingertips or the manipulated object. Future inverse kinematics (IK) solvers will translate Task Space objectives into Joint Space commands.</p>
-<h2 id="safety-mechanisms">Safety Mechanisms</h2>
-<p>The SDK incorporates multi-layered safety mechanisms tightly integrated into the control pipeline.</p>
-<ul>
-<li><strong>Soft Limits</strong>: Every position command is intercepted by <code>validate_positions()</code>. This enforces strict lower and upper angular bounds before any command reaches the hardware, preventing self-collision and hyper-extension.</li>
-<li><strong>Emergency Stop</strong>: For immediate halting of all motion, the <code>hand.stop()</code> method is available. This bypasses normal trajectory execution and immediately arrests actuator movement.</li>
-</ul>
+<h1 id="command-and-control-behavior">Command and control behavior</h1>
+<h2 id="current-in-memory-behavior">Current in-memory behavior</h2>
+<p><code>Hand.move_joints()</code> forwards a dictionary of position targets to its backend. <code>MockHandDriver</code> rejects unknown joint names and updates its stored values immediately. It has no physical trajectory, velocity controller, force feedback or timing model.</p>
+<p><code>Hand.move_to_grasp(name)</code> looks up a target dictionary and forwards it. <code>Hand.open()</code> requests zero targets for the backend's reported joints. The <code>open</code> grasp entry is different: its empty target dictionary leaves existing mock values unchanged.</p>
+<h2 id="validation-and-stopping">Validation and stopping</h2>
+<p>The separate <code>Finger.validate_positions()</code> method checks caller-provided values against configured ranges. The general hand command path does not promise to perform that check. Software ranges are not evidence of collision-free or safe physical motion.</p>
+<p><code>Hand.stop()</code> requests backend-specific behavior. In the mock it has no physical action; unsupported vendor adapters raise <code>NotImplementedError</code>. It is not an implemented physical emergency stop. See <a href="../safety/">safety scope</a>.</p>
+<p>No physical position, velocity, effort or impedance-control mode is established by the mock example. A future backend needs explicit implementation and its own validation.</p>
 
 
 
@@ -2512,7 +2469,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
