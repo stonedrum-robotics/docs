@@ -1,51 +1,11 @@
-# Launch Files
+# Launch file source status
 
-The Stonedrum Robotics ROS 2 package provides standard Python-based launch files to initialize the system quickly. These launch files manage node lifecycle, load parameters, and can map topics as necessary.
+The repository installs `launch/hand.launch.py`. It creates one `hand_node` process named `dexterous_hand` and declares a launch argument named `mock` with default `true`.
 
-## Available Launch Files
+## Important distinction
 
-### `hand.launch.py`
-The primary launch file for bringing up the dexterous hand. It starts the `HandNode` and optionally starts the `GraspActionServer` and `TeleoperationNode` based on arguments.
+The node parameters in this file contain the literal `{"mock": True}`; the launch argument is not wired through `LaunchConfiguration`. Separately, `HandNode` directly constructs `Hand.mock()` and does not read a backend parameter. Setting `mock:=false` does not turn this source into a hardware driver.
 
-**Arguments:**
-- `mock` (default: `true`): If `true`, the `HandNode` initializes the software mock driver (`Hand.mock()`). If `false`, it connects to physical hardware.
-- `use_teleop` (default: `false`): If `true`, launches the `TeleoperationNode` with a default keyboard layout.
-- `start_action_server` (default: `true`): If `true`, launches the `GraspActionServer` to handle high-level named grasps.
+`config/default.yaml` contains mock, publishing-rate and joint-name values, but the inspected launch file does not load that YAML file and the node does not declare/read those parameters. Do not infer a configurable runtime from installed files alone.
 
-## Code Example
-
-To launch the system in simulation/mock mode with the grasp action server running, use the following terminal command:
-
-```bash
-ros2 launch dexterous_hand_ros2 hand.launch.py mock:=true start_action_server:=true
-```
-
-To include this launch file inside a larger system launch (like an arm + hand setup), you can use the ROS 2 Python launch API:
-
-```python
-from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import PathJoinSubstitution
-from launch_ros.substitutions import FindPackageShare
-
-def generate_launch_description():
-    hand_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([
-            PathJoinSubstitution([
-                FindPackageShare('dexterous_hand_ros2'),
-                'launch',
-                'hand.launch.py'
-            ])
-        ]),
-        launch_arguments={
-            'mock': 'false',
-            'use_teleop': 'false'
-        }.items()
-    )
-
-    return LaunchDescription([
-        hand_launch
-    ])
-```
-For advanced configurations, contact us at info@stonedrum.co.
+This page replaces the former hardware-launch recipe with an explanation of actual source behavior. A working ROS launch/build environment and any future configuration changes require separate validation; none were executed during this documentation repair.

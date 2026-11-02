@@ -1,17 +1,11 @@
-# Recommended Accessories
-To ensure a smooth integration and operation of your Linkerbot dexterous hands, we recommend several key accessories. These items have been identified as essential during typical laboratory deployments.
+# Accessory evaluation
 
-## Hardware & Electrical
-- **Certified Power Supply**: A high-quality, regulated DC power supply is critical. It must match the specific voltage and current requirements (`[VENDOR_SPEC_REQUIRED]`) of your hand model (L20 Lite, L20, or L30) to prevent brownouts during high-torque grasps.
-- **Emergency Stop Switch**: Required for all demos and workshops. This should be an external hardware cutoff that immediately severs power to the hand motors, independent of the robot arm's safety system.
-- **Shielded Communication Cable**: Essential for reliable CAN/CAN FD or RS-485 communication. Keep at least two on hand (one active, one spare) as cables routed along robotic arms are subject to wear.
+An integration may require power, interface, mounting, cabling and instrumentation components. Their selection depends on the exact hardware and site configuration, not on the Python mock's joint names.
 
-## Mounting & Tooling
-- **Robot Flange Adapter**: A custom mechanical plate required to mate the Linkerbot wrist pattern to your specific robot arm (e.g., UR5e, Franka Panda).
-- **Torque Screwdriver**: Required for repeatable, secure mounting of the hand to the adapter plate and flange. Ensuring correct torque prevents loosening during high-acceleration maneuvers.
+## Record before selecting parts
 
-## Testing & Demonstration
-- **Demo Object Kit**: A standardized set of objects (bolts, bottles, cups, foam blocks) for testing grasps, validating teleoperation, and showcasing the hand's capabilities in a repeatable manner.
+For each proposed component, record the manufacturer/part revision, required function, mating interfaces, electrical/mechanical limits and source of those limits. Treat power supplies, bus adapters and mounting hardware as separate engineering choices that require configuration-specific review.
 
-## Ordering Information
-To order any of these accessories, or to request vendor-specific specifications for your hardware setup, please contact Stonedrum Robotics directly at **info@stonedrum.co**.
+The [preliminary accessory list](https://github.com/stonedrum-robotics/hardware-resources/blob/main/bom/accessories-bom.csv) is a starting point for investigation. It does not establish exact parts, availability, safe wiring, qualified fit or an orderable Stonedrum bundle. No operating or emergency-cutoff procedure is supplied here.
+
+For a scoped component enquiry, use [info@stonedrum.co](mailto:info@stonedrum.co). A contact route does not promise supply, lead time, installation or support.

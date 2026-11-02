@@ -1,11 +1,7 @@
-# Docker Deployment
+# Container source status
 
-We provide a Dockerfile and `docker-compose.yml` to isolate the ROS 2 environment.
+The SDK includes `docker/Dockerfile` and `docker/docker-compose.yml`. The Dockerfile starts from `ros:humble-ros-base`, adds pip/colcon tooling, copies the SDK and installs its development extras. The Compose file describes a development service with the repository mounted as a volume.
 
-```bash
-cd dexterous-hand-sdk/docker
-docker-compose up -d
-docker-compose exec ros2_env bash
-```
+These source files are not proof of a successful image build, an available image registry, or a preinstalled MoveIt/MuJoCo environment. This Docs repair did not build or run the container, and the Python mock checks do not establish container/device compatibility.
 
-This ensures all dependencies (ROS 2, MoveIt 2, MuJoCo) are pre-installed.
+Before using a container as reproducible evidence, record the actual base-image digest, dependency resolution, build result, runtime environment and tested behavior. Hardware access and ROS networking require their own configuration-specific review. Use the standalone [mock source setup](../getting-started/installation.md) for the smaller offline example.

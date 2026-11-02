@@ -1,34 +1,15 @@
-# Control Modes
+# Command and control behavior
 
-The Dexterous Hand SDK provides robust control interfaces for operating the hand in both physical and simulated environments.
+## Current in-memory behavior
 
-## Current Mode: Position Control
+`Hand.move_joints()` forwards a dictionary of position targets to its backend. `MockHandDriver` rejects unknown joint names and updates its stored values immediately. It has no physical trajectory, velocity controller, force feedback or timing model.
 
-Presently, the primary control mode exposed by the SDK is **Position Control**. In this mode, users specify target joint angles in radians. 
+`Hand.move_to_grasp(name)` looks up a target dictionary and forwards it. `Hand.open()` requests zero targets for the backend's reported joints. The `open` grasp entry is different: its empty target dictionary leaves existing mock values unchanged.
 
-When a position command is issued:
-1. The desired joint positions are validated against hardware limits.
-2. The targets are transmitted to the hand's low-level controllers.
-3. The internal PID controllers drive the actuators to reach the target angles.
+## Validation and stopping
 
-This mode is ideal for pick-and-place tasks, predefined grasp execution, and kinematic planning.
+The separate `Finger.validate_positions()` method checks caller-provided values against configured ranges. The general hand command path does not promise to perform that check. Software ranges are not evidence of collision-free or safe physical motion.
 
-## Future Modes `[PLANNED]`
+`Hand.stop()` requests backend-specific behavior. In the mock it has no physical action; unsupported vendor adapters raise `NotImplementedError`. It is not an implemented physical emergency stop. See [safety scope](safety.md).
 
-To support advanced manipulation and physical interaction research, future releases will introduce the following modes:
-- **Velocity Control `[PLANNED]`**: Direct commanding of joint velocities (rad/s) for smoother continuous motion profiles.
-- **Torque / Effort Control `[PLANNED]`**: Direct commanding of joint torques (Nm) to enable dynamic tasks and underactuated grasping.
-- **Impedance Control `[PLANNED]`**: Allows tuning of virtual stiffness and damping parameters, enabling compliant interaction with fragile objects and unstructured environments.
-
-## Coordinate Frames
-
-Understanding the operational spaces is critical for control:
-- **Joint Space**: The native configuration space of the hand. Commands are arrays of joint angles (e.g., `thumb_flex = 0.5 rad`). The SDK currently operates purely in Joint Space.
-- **Task Space `[PLANNED]`**: The Cartesian space (X, Y, Z, Roll, Pitch, Yaw) representing the position and orientation of the fingertips or the manipulated object. Future inverse kinematics (IK) solvers will translate Task Space objectives into Joint Space commands.
-
-## Safety Mechanisms
-
-The SDK incorporates multi-layered safety mechanisms tightly integrated into the control pipeline.
-
-- **Soft Limits**: Every position command is intercepted by `validate_positions()`. This enforces strict lower and upper angular bounds before any command reaches the hardware, preventing self-collision and hyper-extension.
-- **Emergency Stop**: For immediate halting of all motion, the `hand.stop()` method is available. This bypasses normal trajectory execution and immediately arrests actuator movement.
+No physical position, velocity, effort or impedance-control mode is established by the mock example. A future backend needs explicit implementation and its own validation.

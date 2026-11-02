@@ -1,19 +1,11 @@
-# Contact & Support
+# Contact and reports
 
-Stonedrum Robotics provides multiple avenues for support depending on your needs.
+For reproducible SDK bugs and documentation problems, use [SDK Issues](https://github.com/stonedrum-robotics/dexterous-hand-sdk/issues). Include the repository commit, Python/environment version, what you ran and a minimal redacted reproduction. GitHub Discussions are not enabled for these repositories.
 
-## Technical Support
+Issues are public. Do not include credentials, customer/supplier information, private logs, serial numbers, network addresses or recordings of people/facilities. Suspected vulnerabilities or unsafe software behavior should be reported privately to [info@stonedrum.co](mailto:info@stonedrum.co), with `Security:` in the subject for security reports.
 
-For all open-source technical issues, bug reports, and feature requests, please utilize GitHub:
-- **Bug Reports**: Open an issue on our [GitHub Issues](https://github.com/stonedrum/dexterous-hand-sdk/issues) page. Please include logs, reproducible steps, and system information.
-- **Discussions**: For general usage questions or sharing your projects, join the conversation in [GitHub Discussions](https://github.com/stonedrum/dexterous-hand-sdk/discussions).
-- **Response Times**: Community issues are triaged weekly. 
+## General enquiries
 
-## Commercial Enquiries
+`info@stonedrum.co` is the general Stonedrum contact for scoped component or integration questions. No acknowledgement/fix timeline, weekly triage, maintenance service, enterprise SLA or hardware support is promised by this page. Email is not an emergency channel.
 
-For enterprise deployments, volume pricing, SLA-backed support, and partnership opportunities, please contact our commercial team directly:
-- **Email**: info@stonedrum.co
-
-## About Stonedrum Robotics
-
-Stonedrum Robotics designs cutting-edge hardware and robust software ecosystems to accelerate manipulation research. We believe that highly dexterous, reliable, and accessible robotic end-effectors are the key to the next generation of embodied AI.
+Stonedrum works across hardware, data and integration in Europe. References to external hardware do not establish Stonedrum manufacture, compatibility, availability or an accepted support contract.
