@@ -1,68 +1,39 @@
-# Grasp Taxonomy
+# Grasp vocabulary and mock target sets
 
-Named grasps are foundational for establishing common vocabularies in manipulation research. Standardizing these poses across the Dexterous Hand SDK ensures high reproducibility when evaluating grasping algorithms, sharing benchmark datasets, and comparing research outcomes.
+Power and precision grasps provide a useful vocabulary for discussing manipulation. A power grasp emphasizes broad support/contact, while a precision grasp emphasizes more localized finger contact. This vocabulary does not establish the result of a physical experiment.
 
-## The Grasp Library
+## The source library
 
-The `GraspLibrary` includes 12 predefined grasp poses, inspired by established robotic taxonomies.
+The pinned `GraspLibrary.default_poses()` contains nine primary entries and three compatibility entries (`open`, `pinch`, `cylindrical`), twelve entries total. The target dictionaries below are software example values in radians, not calibrated hardware poses or safe object-handling instructions.
 
-| Grasp Name | Description | Typical Object | Joint Angle Range (rad) |
-|------------|-------------|----------------|--------------------------|
-| `relaxed_open` | Slightly open rest posture for transport and inspection. | None (Idle) | ~0.08 |
-| `precision_pinch` | Thumb and index fingertip contact. | Pegs, beads | 0.08 - 0.70 |
-| `tripod` | Three-point precision grasp. | Pens, markers | 0.18 - 0.70 |
-| `lateral_pinch` | Thumb pad against the side of the index finger. | Cards, keys | 0.18 - 0.72 |
-| `index_point` | Index finger extended, others curled. | Buttons, screens | 0.00 - 0.86 |
-| `cylindrical_power`| Power grasp wrapping all fingers. | Handles, bottles | 0.55 - 0.90 |
-| `spherical_power` | Spread-finger power grasp. | Balls, knobs | 0.62 - 0.82 |
-| `hook` | Fingers curled without thumb opposition. | Bags, handles | 0.05 - 1.08 |
-| `platform` | Flat extended-finger support posture. | Trays | ~0.05 |
-| `open` | Alias for `relaxed_open`. | None (Idle) | N/A |
-| `pinch` | Alias for `precision_pinch`. | Pegs, beads | N/A |
-| `cylindrical` | Alias for `cylindrical_power`. | Handles, bottles | N/A |
+| Entry | Stored targets |
+|---|---|
+| `relaxed_open` | thumb_flex=0.08, index_flex=0.08, middle_flex=0.08, ring_flex=0.08, little_flex=0.08 |
+| `precision_pinch` | thumb_flex=0.65, index_flex=0.7, middle_flex=0.12, ring_flex=0.08, little_flex=0.08 |
+| `tripod` | thumb_flex=0.7, index_flex=0.65, middle_flex=0.62, ring_flex=0.18, little_flex=0.18 |
+| `lateral_pinch` | thumb_flex=0.72, index_flex=0.38, middle_flex=0.22, ring_flex=0.18, little_flex=0.18 |
+| `index_point` | thumb_flex=0.42, index_flex=0, middle_flex=0.82, ring_flex=0.84, little_flex=0.86 |
+| `cylindrical_power` | thumb_flex=0.55, index_flex=0.9, middle_flex=0.9, ring_flex=0.9, little_flex=0.9 |
+| `spherical_power` | thumb_flex=0.62, index_flex=0.78, middle_flex=0.82, ring_flex=0.78, little_flex=0.72 |
+| `hook` | thumb_flex=0.05, index_flex=1.05, middle_flex=1.08, ring_flex=1.08, little_flex=1.02 |
+| `platform` | thumb_flex=0.18, index_flex=0.05, middle_flex=0.05, ring_flex=0.05, little_flex=0.05 |
+| `open` | Empty dictionary; leaves existing mock values unchanged |
+| `pinch` | thumb_flex=0.65, index_flex=0.7, middle_flex=0.12, ring_flex=0.08, little_flex=0.08 |
+| `cylindrical` | thumb_flex=0.55, index_flex=0.9, middle_flex=0.9, ring_flex=0.9, little_flex=0.9 |
 
-## Cutkosky Taxonomy Overview
+`pinch` has the same targets as `precision_pinch`; `cylindrical` has the same targets as `cylindrical_power`. Despite its historical name, `open` does not map to `relaxed_open`: it carries `{}`. Use `Hand.open()` when a mock exercise needs zero targets.
 
-The grasp poses are heavily inspired by the Cutkosky grasp taxonomy (Cutkosky 1989), a seminal work in robotics. The taxonomy fundamentally divides grasps into two main branches:
-- **Power Grasps**: Emphasize stability and force. The object is typically held firmly against the palm and the palmar surfaces of the fingers (e.g., `cylindrical_power`, `spherical_power`).
-- **Precision Grasps**: Emphasize dexterity and sensitivity. The object is held with the tips of the fingers and thumb, allowing for fine manipulation (e.g., `precision_pinch`, `tripod`).
-
-## Using the Grasp Library
-
-You can easily retrieve a predefined pose from the library and command the hand:
+## Inspecting and customizing values
 
 ```python
-from dexterous_hand.hand import Hand
-
-hand = Hand.mock()
-# Retrieve the grasp definition
-tripod_pose = hand.grasps.get("tripod")
-
-# Command the hand to move to the grasp
-hand.move_to_grasp("tripod")
-```
-
-## Defining Custom Poses
-
-For specialized tasks, you can define custom grasp poses and integrate them into your workflow:
-
-```python
+from dexterous_hand import Hand
 from dexterous_hand.grasp_library import GraspPose
 
-custom_pose = GraspPose(
-    name="custom_pinch",
-    joint_positions_rad={
-        "thumb_flex": 0.5,
-        "index_flex": 0.5,
-        "middle_flex": 0.0,
-        "ring_flex": 0.0,
-        "little_flex": 0.0,
-    },
-    description="A moderate pinch for fragile objects."
-)
-
-# Command the custom positions directly
-hand.move_joints(custom_pose.joint_positions_rad)
+hand = Hand.mock()
+pose = hand.grasps.get("tripod")
+print(pose.joint_positions_rad)
+custom = GraspPose("custom", {"index_flex": 0.3}, "Mock exercise")
+hand.move_joints(custom.joint_positions_rad)
 ```
 
-**Research Citation Note**: If utilizing these standard poses in academic work, consider referencing the foundational taxonomy: *Cutkosky, M. R. (1989). On grasp choice, grasp models, and the design of hands for manufacturing tasks. IEEE Transactions on Robotics and Automation, 5(3), 269-279.*
+`GraspPose` describes a named target dictionary. It does not add force control, object sensing or geometry validation. Continue with the [sequence tutorial](../tutorials/02-grasp-sequence.md).

@@ -1,6 +1,11 @@
-# Imitation Learning
+# Imitation-learning preparation
 
-Imitation learning (IL) and reinforcement learning (RL) require robust data collection.
+A proposed imitation-learning experiment needs a defined observation/action representation, timing and task context. Data collection, training and policy evaluation are different pieces of work, each needing explicit source and version records.
 
-By using the teleoperation setup, you can record state-action trajectories. 
-Our ROS 2 bags provide synchronized joint states, commands, and optional RGB-D camera feeds, streamlining the data pipeline for models like ACT or Diffusion Policies.
+## Current interface examples
+
+`TeleoperationFrame` can hold supplied joint targets. It does not record human demonstrations, synchronize cameras/sensors, manage dataset permissions or load/train a policy. The RL demo entry point prints an integration instruction; no trained model or inference implementation is supplied there.
+
+Before using a collected dataset, establish provenance, permitted uses and the applicable privacy/workflow requirements. Before making transfer claims, evaluate the exact policy, embodiment mapping and target task. No ACT/Diffusion Policy compatibility, distribution service or automatic retargeting result is established by the current SDK.
+
+Use [canned frames](../tutorials/03-teleoperation.md) for an offline interface exercise and [training-data concepts](../concepts/training-data.md) for candidate metadata questions.

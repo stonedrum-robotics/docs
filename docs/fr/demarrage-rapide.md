@@ -1,57 +1,30 @@
-# Premier Mouvement
+# Premier exemple en mémoire
 
-Dans ce tutoriel, vous allez écrire votre premier script pour interagir avec le SDK Dexterous Hand.
-
-## Comprendre le Mode Simulé (Mock Mode)
-
-Avant de connecter le matériel physique, nous allons utiliser le **Mode Simulé (Mock Mode)**. L'interface mock du SDK crée une simulation logicielle de la main qui répond aux commandes de l'API de manière identique au matériel réel.
-
-L'utilisation du mode simulé est cruciale pour plusieurs raisons :
-1.  **Sécurité :** Il vous permet de tester la logique et les séquences de mouvement sans risquer d'endommager la main physique ou l'environnement immédiat.
-2.  **Praticité :** Vous pouvez développer et déboguer du code n'importe où, même lorsque le matériel n'est pas disponible.
-3.  **Vérification :** Il garantit que votre environnement logiciel est correctement configuré avant d'introduire les complexités liées au matériel.
-
-## Le Code
-
-Écrivons un script simple pour initialiser la main simulée et lire ses positions articulaires de départ. Créez un fichier nommé `premier_mouvement.py` et ajoutez le code suivant :
-
-```python
-# Importer la classe Hand depuis le SDK
-from dexterous_hand import Hand
-
-# Initialiser une instance de main simulée. Cela se connecte à un pilote
-# simulé en utilisant la configuration articulaire par défaut.
-hand = Hand.mock()
-
-# Lire l'état actuel de toutes les articulations depuis le pilote simulé
-joints = hand.read_joints()
-
-# Itérer à travers les états articulaires retournés et afficher leurs noms et positions
-for joint in joints:
-    print(f"Articulation : {joint.name}, Position : {joint.position_rad} rad")
-```
-
-Exécutez le script :
+Après la [préparation des sources](installation.md), lancez cet exemple depuis le répertoire du SDK fixé au commit `17d8768affe743e9f997f1df5b100ea782ee5526` :
 
 ```bash
-python premier_mouvement.py
+PYTHONPATH=. python3 - <<'PYTHON'
+from dexterous_hand import Hand
+
+hand = Hand.mock()
+hand.move_joints({"thumb_flex": 0.25, "index_flex": 0.4})
+for state in hand.read_joints():
+    print(f"{state.name}: {state.position_rad:.2f} rad")
+hand.open()
+hand.stop()
+PYTHON
 ```
 
-## Comprendre le Résultat
-
-Lorsque vous exécutez le script, vous devriez voir un résultat similaire à celui-ci :
+Sortie attendue :
 
 ```text
-Articulation : thumb_flex, Position : 0.0 rad
-Articulation : index_flex, Position : 0.0 rad
-Articulation : middle_flex, Position : 0.0 rad
-Articulation : ring_flex, Position : 0.0 rad
-Articulation : little_flex, Position : 0.0 rad
+thumb_flex: 0.25 rad
+index_flex: 0.40 rad
+middle_flex: 0.00 rad
+ring_flex: 0.00 rad
+little_flex: 0.00 rad
 ```
 
-*   **Articulation :** Cela identifie le point d'articulation spécifique sur la main. Par défaut, le pilote simulé initialise cinq articulations représentant les axes de flexion principaux du pouce, de l'index, du majeur, de l'annulaire et de l'auriculaire.
-*   **Position :** Il s'agit de l'angle actuel de l'articulation, mesuré en radians (`rad`). Parce que nous venons d'initialiser la main simulée et que nous n'avons commandé aucun mouvement, toutes les positions sont à `0.0`, ce qui représente une pose neutre et ouverte.
+`Hand.mock()` conserve cinq positions en mémoire. `move_joints()` modifie les valeurs indiquées et `read_joints()` renvoie cet état logiciel. `open()` demande des cibles nulles pour les articulations déclarées. `stop()` ne réalise aucune action physique dans ce backend.
 
-## Prochaines Étapes
-
-Maintenant que vous avez initialisé la main et lu son état avec succès, vous êtes prêt à commander des mouvements. Consultez le guide de configuration matérielle pour connecter votre Linkerbot, ou continuez à explorer le SDK avec le tutoriel sur les séquences de saisie.
+Cet exemple ne commande aucun appareil et ne simule ni contact, ni collision, ni dynamique. Les adaptateurs matériels actuels refusent les opérations non prises en charge avec `NotImplementedError` avant toute communication. Un changement de constructeur ne fournit donc pas une intégration matérielle. Le SDK ne fournit pas de fonction d'arrêt d'urgence physique validée.

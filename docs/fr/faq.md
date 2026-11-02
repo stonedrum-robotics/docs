@@ -1,49 +1,25 @@
-# Foire Aux Questions (FAQ)
+# Foire aux questions
 
-**1. Qu'est-ce que le SDK Dexterous Hand ?**
-Le SDK Dexterous Hand est une bibliothèque Python fournie par Stonedrum Robotics pour contrôler et interagir avec la main dextre L20.
+## Que peut-on utiliser sans matériel ?
 
-**2. Quelles versions de Python sont prises en charge ?**
-Le SDK nécessite Python 3.10 ou une version plus récente (3.10, 3.11 et 3.12 sont testées en CI).
+`Hand.mock()` conserve cinq positions articulaires logicielles. Le [premier exemple](demarrage-rapide.md) montre les commandes et les valeurs retournées ; il ne simule pas le contact et ne prouve pas le comportement d'un appareil.
 
-**3. Quels systèmes d'exploitation sont pris en charge ?**
-Nous prenons officiellement en charge Ubuntu Linux et macOS. Windows est pris en charge via WSL2.
+## Peut-on remplacer le mock par une main physique ?
 
-**4. Quelles distributions ROS 2 sont compatibles ?**
-Nous prenons actuellement en charge ROS 2 Humble (Ubuntu 22.04) et ROS 2 Jazzy (Ubuntu 24.04).
+Les adaptateurs Linkerbot/OmniHand actuels refusent les opérations non prises en charge avant toute communication. Un changement de constructeur ne crée pas de pilote fonctionnel. `Hand.stop()` n'est pas une fonction d'arrêt d'urgence physique implémentée.
 
-**5. Puis-je utiliser le SDK sans ROS 2 ?**
-Oui, le paquet Python de base `dexterous_hand` est totalement indépendant de ROS 2 et peut être utilisé de manière autonome.
+## Quels environnements ont été vérifiés ?
 
-**6. Puis-je simuler la main sans le matériel physique ?**
-Oui. Vous pouvez utiliser le mode Mock intégré pour tester le logiciel, ou utiliser nos modèles URDF fournis dans des simulateurs comme Gazebo ou MuJoCo.
+Les résultats locaux enregistrés couvrent Python3.11/3.12 ; la CI de la PR corrective a réussi sur Python3.11. Cela ne valide pas tous les systèmes, versions déclarées, distributions ROS, images Docker, configurations MoveIt ou modèles MuJoCo.
 
-**7. Comment activer le mode Mock ?**
-Il suffit d'initialiser la main en utilisant la méthode d'usine mock : `hand = Hand.mock()`. Cela ne nécessite aucune connexion physique.
+## Combien de poses sont décrites ?
 
-**8. Comment définir une posture de préhension personnalisée ?**
-Vous pouvez instancier un objet `GraspPose` avec les angles d'articulation souhaités et passer le dictionnaire `joint_positions_rad` directement à `hand.move_joints()`.
+Neuf ensembles de cibles principaux et trois entrées de compatibilité. `open` contient un dictionnaire vide et ne correspond pas à `relaxed_open`. `Hand.open()` est une méthode distincte qui demande des cibles nulles.
 
-**9. Quels sont les noms d'articulation standardisés ?**
-Les 5 articulations principales utilisées dans le SDK sont `thumb_flex`, `index_flex`, `middle_flex`, `ring_flex` et `little_flex`.
+## Existe-t-il une lecture de gant ou un service de données ?
 
-**10. MoveIt 2 est-il pris en charge ?**
-Les paquets de configuration MoveIt 2 sont en cours de développement et seront fournis dans une prochaine version pour permettre une planification de mouvement avancée.
+La lecture de gant n'est pas implémentée dans le contrôleur et l'exemple applique une trame prédéfinie. La page [données d'entraînement](donnees-entrainement.md) n'annonce aucun service, jeu de données, calendrier ou garantie de conformité.
 
-**11. La main nécessite-t-elle un étalonnage manuel ?**
-En fonctionnement normal, la main s'étalonne automatiquement au démarrage. L'étalonnage manuel n'est requis que si un actionneur est remplacé.
+## Comment poser une question ?
 
-**12. Pourquoi une erreur `NotImplementedError` apparaît-elle dans `read_glove_frame` ?**
-La téléopération via des gants de données est prévue pour une future mise à jour. La signature de la méthode existe mais n'est pas encore implémentée.
-
-**13. Le matériel est-il certifié CE ?**
-La certification CE est actuellement **en cours de vérification**. Pour plus de détails, veuillez contacter info@stonedrum.co.
-
-**14. Comment signaler un bug ou demander une fonctionnalité ?**
-Veuillez utiliser l'outil de suivi des problèmes GitHub (Issues) sur notre dépôt pour signaler des bugs ou soumettre des demandes de fonctionnalités.
-
-**15. Qui contacter pour des questions commerciales ?**
-Pour le support aux entreprises, les prix de gros ou les questions commerciales générales, veuillez contacter Stonedrum Robotics à l'adresse info@stonedrum.co.
-
-**16. Proposez-vous des données d'entraînement pour les modèles de manipulation dextre ?**
-Oui, notre module de données d'entraînement est actuellement en cours de développement (prévu pour le T4 2026). Il vous permettra de charger des jeux de données de tiers et de partenaires directement dans vos pipelines de machine learning. Pour plus de détails, consultez notre page [Données d'Entraînement](donnees-entrainement.md). Contactez `info@stonedrum.co` pour un accès anticipé.
+Utilisez [les Issues du SDK](https://github.com/stonedrum-robotics/dexterous-hand-sdk/issues) pour un problème reproductible et expurgé. Discussions n'est pas activé. Envoyez les rapports sensibles en privé à [info@stonedrum.co](mailto:info@stonedrum.co). Aucun délai de réponse, SLA, service de support ou statut de conformité matérielle n'est promis ici.
